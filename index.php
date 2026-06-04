@@ -66,6 +66,12 @@ try {
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
 
+        // Double check if username column exists in ecommerce_retail_customers
+        $stmt = $db->query("SHOW COLUMNS FROM ecommerce_retail_customers LIKE 'username'");
+        if (!$stmt->fetch()) {
+            $db->exec("ALTER TABLE ecommerce_retail_customers ADD COLUMN username VARCHAR(100) UNIQUE NULL AFTER email");
+        }
+
         // Ensure company_settings has ecommerce_store_url
         $stmt = $db->query("SHOW TABLES LIKE 'company_settings'");
         if ($stmt->fetch()) {
@@ -84,6 +90,15 @@ try {
             <p>Could not connect to the Curtiss ERP Database. Please verify settings.</p>
             <p style='color:#666; font-size:12px;'>Error: {$e->getMessage()}</p>
          </div>");
+}
+
+// Helper to get ERP Base URL dynamically based on hosting environment
+function getErpBaseUrl() {
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    if (strpos($host, 'localhost') !== false || strpos($host, '127.0.0.1') !== false) {
+        return 'http://localhost/Curtiss-ERP/';
+    }
+    return 'https://curtiss.suzxlabs.com/';
 }
 
 // Simple Router
@@ -939,10 +954,11 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
                                                 <!-- Handle both ERP public path and direct filename formats -->
                                                 <?php
                                                     $imgPath = $prod->image_path;
+                                                    $erpUrl = getErpBaseUrl();
                                                     if(strpos($imgPath, 'public/') === 0) {
-                                                        $imgSrc = 'http://localhost/Curtiss-ERP/' . $imgPath;
+                                                        $imgSrc = $erpUrl . $imgPath;
                                                     } else {
-                                                        $imgSrc = 'http://localhost/Curtiss-ERP/public/uploads/products/' . $imgPath;
+                                                        $imgSrc = $erpUrl . 'public/uploads/products/' . $imgPath;
                                                     }
                                                 ?>
                                                 <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($prod->name) ?>">
@@ -999,10 +1015,11 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
                     <?php if(!empty($product->image_path)): ?>
                         <?php
                             $imgPath = $product->image_path;
+                            $erpUrl = getErpBaseUrl();
                             if(strpos($imgPath, 'public/') === 0) {
-                                $imgSrc = 'http://localhost/Curtiss-ERP/' . $imgPath;
+                                $imgSrc = $erpUrl . $imgPath;
                             } else {
-                                $imgSrc = 'http://localhost/Curtiss-ERP/public/uploads/products/' . $imgPath;
+                                $imgSrc = $erpUrl . 'public/uploads/products/' . $imgPath;
                             }
                         ?>
                         <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($product->name) ?>">
