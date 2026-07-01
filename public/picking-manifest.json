@@ -1,0 +1,13 @@
+{
+  "name": "Curtiss Picking Portal",
+  "short_name": "Picking Portal",
+  "version": "1.0.0",
+  "description": "Warehouse Pre-Loading Verification and Product Picking Module",
+  "api_endpoint": "https://curtiss.suzxlabs.com/picking",
+  "portal_url": "https://curtiss.portal.suzxlabs.com",
+  "theme": {
+    "background": "#0f172a",
+    "primary": "#6366f1",
+    "accent": "#10b981"
+  }
+}
