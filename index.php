@@ -1050,7 +1050,6 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
             <div class="nav-links">
                 <a href="index.php?p=home" class="<?= $page === 'home' ? 'active' : '' ?>">Home</a>
                 <a href="index.php?p=shop" class="<?= strpos($page, 'shop') === 0 || $page === 'product' ? 'active' : '' ?>">Shop</a>
-                <a href="index.php?p=blog" class="<?= strpos($page, 'blog') === 0 ? 'active' : '' ?>">Blog</a>
                 
                 <?php if ($isLoggedIn): ?>
                     <a href="index.php?p=portal" class="<?= strpos($page, 'portal') === 0 ? 'active' : '' ?>"><i class="ph ph-user"></i> Portal</a>
@@ -1627,70 +1626,6 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
                     </div>
                 </div>
             </div>
-
-        <?php
-        // ------------------ PAGE: BLOG ------------------
-        elseif ($page === 'blog'):
-            $posts = $db->query("SELECT * FROM ecommerce_blog_posts ORDER BY id DESC")->fetchAll();
-        ?>
-            <h2 style="font-weight:700; margin-bottom:20px;">Corporate Blog & stationery Insights</h2>
-            <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap:30px;">
-                <?php if(empty($posts)): ?>
-                    <p style="color:var(--text-muted); text-align:center; grid-column:1/-1;">No insights articles published yet.</p>
-                <?php else: ?>
-                    <?php foreach($posts as $post): ?>
-                        <a href="index.php?p=blog-post&slug=<?= htmlspecialchars($post->seo_url) ?>" class="prod-showcase-card">
-                            <div class="prod-image-wrapper" style="height:150px; background:#e0e0e0;">
-                                <?php if(!empty($post->image_path)): ?>
-                                    <img src="<?= getErpBaseUrl() ?>public/uploads/blog/<?= htmlspecialchars($post->image_path) ?>" alt="Blog graph" style="width:100%; height:100%; object-fit:cover;">
-                                <?php else: ?>
-                                    <i class="ph ph-article" style="font-size:42px; color:#999;"></i>
-                                <?php endif; ?>
-                            </div>
-                            <div class="prod-info-box">
-                                <span class="pill-badge" style="background:rgba(0,0,0,0.05); width:fit-content; margin-bottom:8px;"><?= htmlspecialchars($post->category) ?></span>
-                                <h3 style="margin:0 0 10px 0; font-size:16px; font-weight:700; color:var(--text-main);"><?= htmlspecialchars($post->title) ?></h3>
-                                <p style="font-size:12.5px; color:var(--text-muted); line-height:1.4; margin:0 0 10px 0;"><?= htmlspecialchars(substr(strip_tags($post->content), 0, 100)) ?>...</p>
-                                <span style="font-size:11px; color:var(--text-muted); margin-top:auto;"><?= date('F d, Y', strtotime($post->created_at)) ?></span>
-                            </div>
-                        </a>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
-
-        <?php
-        // ------------------ PAGE: BLOG POST DETAILS ------------------
-        elseif ($page === 'blog-post'):
-            $slug = $_GET['slug'] ?? '';
-            $stmt = $db->prepare("SELECT * FROM ecommerce_blog_posts WHERE seo_url = :slug LIMIT 1");
-            $stmt->execute([':slug' => $slug]);
-            $post = $stmt->fetch();
-
-            if(!$post) {
-                echo "<p style='text-align:center;'>Article not found.</p>";
-            } else {
-        ?>
-            <div class="card" style="max-width:800px; margin: 0 auto; padding:40px 30px;">
-                <span class="pill-badge" style="background:rgba(0,102,204,0.08); color:var(--primary); margin-bottom:10px; width:fit-content;"><?= htmlspecialchars($post->category) ?></span>
-                <h1 style="font-size:32px; font-weight:800; margin:0 0 15px 0; line-height:1.2;"><?= htmlspecialchars($post->title) ?></h1>
-                
-                <div style="font-size:12.5px; color:var(--text-muted); margin-bottom:30px; display:flex; gap:15px; border-bottom:1px solid var(--mega-divider); padding-bottom:10px;">
-                    <span>Date: <strong><?= date('M d, Y', strtotime($post->created_at)) ?></strong></span>
-                    <span>By: <strong><?= htmlspecialchars($post->author) ?></strong></span>
-                </div>
-
-                <?php if(!empty($post->image_path)): ?>
-                    <div style="border-radius:var(--rounded); overflow:hidden; border:1px solid var(--card-border); margin-bottom:35px;">
-                        <img src="<?= getErpBaseUrl() ?>public/uploads/blog/<?= htmlspecialchars($post->image_path) ?>" alt="Banner graph" style="width:100%; height:auto;">
-                    </div>
-                <?php endif; ?>
-
-                <div style="font-size:15px; line-height:1.7; color:var(--text-main);">
-                    <?= nl2br(htmlspecialchars($post->content)) ?>
-                </div>
-            </div>
-        <?php
-            }
 
         // ------------------ PAGE: LOGIN / REGISTER ------------------
         elseif ($page === 'login'):
