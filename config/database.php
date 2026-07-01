@@ -76,11 +76,13 @@ function getProductImageUrl($path) {
     
     $path = ltrim($path, '/');
     if (strpos($path, 'public/') === 0) {
+        $path = substr($path, 7);
+    }
+    
+    if (strpos($path, 'uploads/') === 0) {
         $url = $erpBase . $path;
-    } elseif (strpos($path, 'uploads/') === 0) {
-        $url = $erpBase . 'public/' . $path;
     } else {
-        $url = $erpBase . 'public/uploads/products/' . $path;
+        $url = $erpBase . 'uploads/products/' . $path;
     }
     
     $GLOBALS['image_debug_logs'][] = [
@@ -106,11 +108,13 @@ function getBannerImageUrl($path) {
     
     $path = ltrim($path, '/');
     if (strpos($path, 'public/') === 0) {
+        $path = substr($path, 7);
+    }
+    
+    if (strpos($path, 'uploads/') === 0) {
         $url = $erpBase . $path;
-    } elseif (strpos($path, 'uploads/') === 0) {
-        $url = $erpBase . 'public/' . $path;
     } else {
-        $url = $erpBase . 'public/uploads/banners/' . $path;
+        $url = $erpBase . 'uploads/banners/' . $path;
     }
     
     $GLOBALS['image_debug_logs'][] = [
