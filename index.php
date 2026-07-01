@@ -122,11 +122,14 @@ try {
 // Helper to get ERP Base URL dynamically based on hosting environment
 function getErpBaseUrl() {
     $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
     if (strpos($host, 'localhost') !== false || strpos($host, '127.0.0.1') !== false) {
-        return 'http://localhost/Curtiss-ERP/';
+        return $scheme . '://' . $host . '/Curtiss-ERP/';
     }
     return 'https://curtiss.suzxlabs.com/';
 }
+
+$GLOBALS['image_debug_logs'] = [];
 
 // Clean and format product image URL
 function getProductImageUrl($path) {
@@ -136,9 +139,16 @@ function getProductImageUrl($path) {
     $base = getErpBaseUrl();
     $path = ltrim($path, '/');
     if (strpos($path, 'public/') === 0 || strpos($path, 'uploads/') === 0) {
-        return $base . $path;
+        $url = $base . $path;
+    } else {
+        $url = $base . 'public/uploads/products/' . $path;
     }
-    return $base . 'public/uploads/products/' . $path;
+    $GLOBALS['image_debug_logs'][] = [
+        'type' => 'product',
+        'input' => $path,
+        'resolved' => $url
+    ];
+    return $url;
 }
 
 // Clean and format banner image URL
@@ -149,9 +159,16 @@ function getBannerImageUrl($path) {
     $base = getErpBaseUrl();
     $path = ltrim($path, '/');
     if (strpos($path, 'public/') === 0 || strpos($path, 'uploads/') === 0) {
-        return $base . $path;
+        $url = $base . $path;
+    } else {
+        $url = $base . 'public/uploads/banners/' . $path;
     }
-    return $base . 'public/uploads/banners/' . $path;
+    $GLOBALS['image_debug_logs'][] = [
+        'type' => 'banner',
+        'input' => $path,
+        'resolved' => $url
+    ];
+    return $url;
 }
 
 // Simple Router
@@ -1165,7 +1182,7 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
                         <a href="index.php?p=product&id=<?= $prod->id ?>" class="prod-showcase-card">
                             <div class="prod-image-wrapper">
                                 <?php if(!empty($prod->image_path)): ?>
-                                    <img src="<?= getProductImageUrl($prod->image_path) ?>" alt="Item preview">
+                                    <img src="<?= getProductImageUrl($prod->image_path) ?>" alt="Item preview" onerror="console.error('Failed to load homepage item image:', this.src);">
                                 <?php else: ?>
                                     <i class="ph ph-image" style="font-size:36px; color:#ccc;"></i>
                                 <?php endif; ?>
@@ -1310,7 +1327,7 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
                                 <a href="index.php?p=product&id=<?= $prod->id ?>" class="prod-showcase-card">
                                     <div class="prod-image-wrapper">
                                         <?php if(!empty($prod->image_path)): ?>
-                                            <img src="<?= getProductImageUrl($prod->image_path) ?>" alt="Item preview">
+                                            <img src="<?= getProductImageUrl($prod->image_path) ?>" alt="Item preview" onerror="console.error('Failed to load shop item image:', this.src);">
                                         <?php else: ?>
                                             <i class="ph ph-image" style="font-size:36px; color:#ccc;"></i>
                                         <?php endif; ?>
@@ -1367,7 +1384,7 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
                 <!-- Left panel image -->
                 <div class="card" style="display:flex; align-items:center; justify-content:center; height:400px; padding:0;">
                     <?php if(!empty($product->image_path)): ?>
-                           <img src="<?= getProductImageUrl($product->image_path) ?>" alt="Product graph" style="max-height:90%; max-width:90%; object-fit:contain;">
+                           <img src="<?= getProductImageUrl($product->image_path) ?>" alt="Product graph" style="max-height:90%; max-width:90%; object-fit:contain;" onerror="console.error('Failed to load product details image:', this.src);">
                     <?php else: ?>
                         <i class="ph ph-image-square" style="font-size:64px; color:#ccc;"></i>
                     <?php endif; ?>
@@ -1499,7 +1516,7 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
                             <a href="index.php?p=product&id=<?= $relItem->id ?>" class="prod-showcase-card">
                                 <div class="prod-image-wrapper">
                                     <?php if(!empty($relItem->image_path)): ?>
-                                        <img src="<?= getProductImageUrl($relItem->image_path) ?>" alt="Item preview">
+                                        <img src="<?= getProductImageUrl($relItem->image_path) ?>" alt="Item preview" onerror="console.error('Failed to load related item image:', this.src);">
                                     <?php else: ?>
                                         <i class="ph ph-image" style="font-size:32px; color:#ccc;"></i>
                                     <?php endif; ?>
@@ -2079,7 +2096,7 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
                                         <div class="prod-showcase-card">
                                             <div class="prod-image-wrapper">
                                                 <?php if(!empty($wish->image_path)): ?>
-                                                    <img src="<?= getProductImageUrl($wish->image_path) ?>" alt="Item preview">
+                                                    <img src="<?= getProductImageUrl($wish->image_path) ?>" alt="Item preview" onerror="console.error('Failed to load wishlist item image:', this.src);">
                                                 <?php else: ?>
                                                     <i class="ph ph-image" style="font-size:32px; color:#ccc;"></i>
                                                 <?php endif; ?>
@@ -2268,6 +2285,13 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
             } else {
                 if (icon) icon.className = 'ph ph-sun';
             }
+
+            // E-Commerce Image Paths Debugger output
+            console.group("E-Commerce Image Paths Debugger");
+            <?php foreach ($GLOBALS['image_debug_logs'] ?? [] as $log): ?>
+                console.log("Type: <?= $log['type'] ?> | Input: <?= addslashes($log['input']) ?> | Resolved URL: <?= addslashes($log['resolved']) ?>");
+            <?php endforeach; ?>
+            console.groupEnd();
         });
     </script>
 </body>
