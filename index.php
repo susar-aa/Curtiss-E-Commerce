@@ -128,6 +128,32 @@ function getErpBaseUrl() {
     return 'https://curtiss.suzxlabs.com/';
 }
 
+// Clean and format product image URL
+function getProductImageUrl($path) {
+    if (empty($path)) {
+        return '';
+    }
+    $base = getErpBaseUrl();
+    $path = ltrim($path, '/');
+    if (strpos($path, 'public/') === 0 || strpos($path, 'uploads/') === 0) {
+        return $base . $path;
+    }
+    return $base . 'public/uploads/products/' . $path;
+}
+
+// Clean and format banner image URL
+function getBannerImageUrl($path) {
+    if (empty($path)) {
+        return '';
+    }
+    $base = getErpBaseUrl();
+    $path = ltrim($path, '/');
+    if (strpos($path, 'public/') === 0 || strpos($path, 'uploads/') === 0) {
+        return $base . $path;
+    }
+    return $base . 'public/uploads/banners/' . $path;
+}
+
 // Simple Router
 $page = $_GET['p'] ?? 'home';
 
@@ -1094,7 +1120,7 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
         ?>
             <!-- Hero banner -->
             <?php if(!empty($banners)): ?>
-                <div class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<?= getErpBaseUrl() ?>public/uploads/banners/<?= htmlspecialchars($banners[0]->image_path) ?>'); background-size: cover; color:#fff; min-height: 280px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+                <div class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<?= getBannerImageUrl($banners[0]->image_path) ?>'); background-size: cover; color:#fff; min-height: 280px; display:flex; flex-direction:column; justify-content:center; align-items:center;">
                     <h1 style="color:#fff;"><?= htmlspecialchars($banners[0]->title) ?></h1>
                     <p style="color:#eee;"><?= htmlspecialchars($banners[0]->subtitle) ?></p>
                     <a href="index.php?p=shop" class="btn">Explore Store Collection</a>
@@ -1139,7 +1165,7 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
                         <a href="index.php?p=product&id=<?= $prod->id ?>" class="prod-showcase-card">
                             <div class="prod-image-wrapper">
                                 <?php if(!empty($prod->image_path)): ?>
-                                    <img src="<?= getErpBaseUrl() ?>public/uploads/products/<?= htmlspecialchars($prod->image_path) ?>" alt="Item preview">
+                                    <img src="<?= getProductImageUrl($prod->image_path) ?>" alt="Item preview">
                                 <?php else: ?>
                                     <i class="ph ph-image" style="font-size:36px; color:#ccc;"></i>
                                 <?php endif; ?>
@@ -1284,7 +1310,7 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
                                 <a href="index.php?p=product&id=<?= $prod->id ?>" class="prod-showcase-card">
                                     <div class="prod-image-wrapper">
                                         <?php if(!empty($prod->image_path)): ?>
-                                            <img src="<?= getErpBaseUrl() ?>public/uploads/products/<?= htmlspecialchars($prod->image_path) ?>" alt="Item preview">
+                                            <img src="<?= getProductImageUrl($prod->image_path) ?>" alt="Item preview">
                                         <?php else: ?>
                                             <i class="ph ph-image" style="font-size:36px; color:#ccc;"></i>
                                         <?php endif; ?>
@@ -1341,7 +1367,7 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
                 <!-- Left panel image -->
                 <div class="card" style="display:flex; align-items:center; justify-content:center; height:400px; padding:0;">
                     <?php if(!empty($product->image_path)): ?>
-                        <img src="<?= getErpBaseUrl() ?>public/uploads/products/<?= htmlspecialchars($product->image_path) ?>" alt="Product graph" style="max-height:90%; max-width:90%; object-fit:contain;">
+                           <img src="<?= getProductImageUrl($product->image_path) ?>" alt="Product graph" style="max-height:90%; max-width:90%; object-fit:contain;">
                     <?php else: ?>
                         <i class="ph ph-image-square" style="font-size:64px; color:#ccc;"></i>
                     <?php endif; ?>
@@ -1473,7 +1499,7 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
                             <a href="index.php?p=product&id=<?= $relItem->id ?>" class="prod-showcase-card">
                                 <div class="prod-image-wrapper">
                                     <?php if(!empty($relItem->image_path)): ?>
-                                        <img src="<?= getErpBaseUrl() ?>public/uploads/products/<?= htmlspecialchars($relItem->image_path) ?>" alt="Item preview">
+                                        <img src="<?= getProductImageUrl($relItem->image_path) ?>" alt="Item preview">
                                     <?php else: ?>
                                         <i class="ph ph-image" style="font-size:32px; color:#ccc;"></i>
                                     <?php endif; ?>
@@ -2053,7 +2079,7 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
                                         <div class="prod-showcase-card">
                                             <div class="prod-image-wrapper">
                                                 <?php if(!empty($wish->image_path)): ?>
-                                                    <img src="<?= getErpBaseUrl() ?>public/uploads/products/<?= htmlspecialchars($wish->image_path) ?>" alt="Item preview">
+                                                    <img src="<?= getProductImageUrl($wish->image_path) ?>" alt="Item preview">
                                                 <?php else: ?>
                                                     <i class="ph ph-image" style="font-size:32px; color:#ccc;"></i>
                                                 <?php endif; ?>
