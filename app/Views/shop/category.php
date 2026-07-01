@@ -169,7 +169,7 @@
                     <a href="<?= APP_URL ?>/shop/item/<?= $item->id ?>" class="prod-showcase-card">
                         <div class="prod-image-wrapper">
                             <?php if(!empty($item->image_path)): ?>
-                                <img src="<?= getProductImageUrl($item->image_path) ?>" alt="Product image" onerror="console.error('Image load failed for product ID <?= $item->id ?>: ' + this.src);">
+                                <img src="<?= APP_URL ?>/uploads/products/<?= htmlspecialchars($item->image_path) ?>" alt="Product image">
                             <?php else: ?>
                                 <i class="ph ph-image" style="font-size: 40px; color:#ccc;"></i>
                             <?php endif; ?>

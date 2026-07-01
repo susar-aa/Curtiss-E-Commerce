@@ -397,13 +397,6 @@
         const savedTheme = localStorage.getItem('ec-theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
         document.getElementById('theme-icon').className = (savedTheme === 'dark') ? 'ph ph-moon' : 'ph ph-sun';
-
-        // E-Commerce Image Paths Debugger output
-        console.group("E-Commerce Image Paths Debugger");
-        <?php foreach ($GLOBALS['image_debug_logs'] ?? [] as $log): ?>
-            console.log("Type: <?= $log['type'] ?> | Input: <?= addslashes($log['input']) ?> | Resolved URL: <?= addslashes($log['resolved']) ?>");
-        <?php endforeach; ?>
-        console.groupEnd();
     </script>
 </body>
 </html>

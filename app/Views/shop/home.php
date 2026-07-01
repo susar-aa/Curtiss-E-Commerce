@@ -221,7 +221,7 @@
 <?php if(!empty($data['banners'])): ?>
     <div class="hero-slider">
         <?php foreach($data['banners'] as $idx => $b): ?>
-            <div class="slide-item <?= $idx === 0 ? 'active' : '' ?>" style="background-image: url('<?= getBannerImageUrl($b->image_path) ?>');">
+            <div class="slide-item <?= $idx === 0 ? 'active' : '' ?>" style="background-image: url('<?= APP_URL ?>/uploads/banners/<?= htmlspecialchars($b->image_path) ?>');">
                 <div class="slide-content">
                     <span class="pill-badge pill-success" style="width:fit-content; background: rgba(52,199,89,0.2); color:#fff;">Exclusive Promotion</span>
                     <h2 class="slide-title"><?= htmlspecialchars($b->title) ?></h2>
@@ -285,7 +285,7 @@
                     <a href="<?= APP_URL ?>/shop/item/<?= $item->id ?>" class="prod-showcase-card">
                         <div class="prod-image-wrapper">
                             <?php if(!empty($item->image_path)): ?>
-                                <img src="<?= getProductImageUrl($item->image_path) ?>" alt="Product Graphic" onerror="console.error('Image load failed for product ID <?= $item->id ?>: ' + this.src);">
+                                <img src="<?= APP_URL ?>/uploads/products/<?= htmlspecialchars($item->image_path) ?>" alt="Product Graphic">
                             <?php else: ?>
                                 <i class="ph ph-image" style="font-size: 40px; color:#ccc;"></i>
                             <?php endif; ?>
@@ -317,7 +317,7 @@
                     <a href="<?= APP_URL ?>/shop/item/<?= $item->id ?>" class="prod-showcase-card">
                         <div class="prod-image-wrapper">
                             <?php if(!empty($item->image_path)): ?>
-                                <img src="<?= getProductImageUrl($item->image_path) ?>" alt="Product Graphic" onerror="console.error('Image load failed for product ID <?= $item->id ?>: ' + this.src);">
+                                <img src="<?= APP_URL ?>/uploads/products/<?= htmlspecialchars($item->image_path) ?>" alt="Product Graphic">
                             <?php else: ?>
                                 <i class="ph ph-image" style="font-size: 40px; color:#ccc;"></i>
                             <?php endif; ?>
@@ -349,7 +349,7 @@
                     <a href="<?= APP_URL ?>/shop/item/<?= $item->id ?>" class="prod-showcase-card">
                         <div class="prod-image-wrapper">
                             <?php if(!empty($item->image_path)): ?>
-                                <img src="<?= getProductImageUrl($item->image_path) ?>" alt="Product Graphic" onerror="console.error('Image load failed for product ID <?= $item->id ?>: ' + this.src);">
+                                <img src="<?= APP_URL ?>/uploads/products/<?= htmlspecialchars($item->image_path) ?>" alt="Product Graphic">
                             <?php else: ?>
                                 <i class="ph ph-image" style="font-size: 40px; color:#ccc;"></i>
                             <?php endif; ?>

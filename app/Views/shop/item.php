@@ -73,7 +73,7 @@
         <!-- Gallery image -->
         <div class="item-gallery">
             <?php if(!empty($data['item']->image_path)): ?>
-                <img src="<?= getProductImageUrl($data['item']->image_path) ?>" alt="Product graph" onerror="console.error('Image load failed for product ID <?= $data['item']->id ?>: ' + this.src);">
+                <img src="<?= APP_URL ?>/uploads/products/<?= htmlspecialchars($data['item']->image_path) ?>" alt="Product graph">
             <?php else: ?>
                 <i class="ph ph-image" style="font-size: 80px; color:#ccc;"></i>
             <?php endif; ?>
@@ -220,7 +220,7 @@
                     <a href="<?= APP_URL ?>/shop/item/<?= $relItem->id ?>" class="prod-showcase-card">
                         <div class="prod-image-wrapper">
                             <?php if(!empty($relItem->image_path)): ?>
-                                <img src="<?= getProductImageUrl($relItem->image_path) ?>" alt="Product image" onerror="console.error('Image load failed for product ID <?= $relItem->id ?>: ' + this.src);">
+                                <img src="<?= APP_URL ?>/uploads/products/<?= htmlspecialchars($relItem->image_path) ?>" alt="Product image">
                             <?php else: ?>
                                 <i class="ph ph-image" style="font-size: 32px; color:#ccc;"></i>
                             <?php endif; ?>

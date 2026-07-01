@@ -25,7 +25,7 @@
                     <div class="prod-showcase-card" style="height: 100%;">
                         <div class="prod-image-wrapper">
                             <?php if(!empty($wish->image_path)): ?>
-                                <img src="<?= getProductImageUrl($wish->image_path) ?>" alt="Product graph" onerror="console.error('Image load failed for wishlist item ID <?= $wish->item_id ?>: ' + this.src);">
+                                <img src="<?= APP_URL ?>/uploads/products/<?= htmlspecialchars($wish->image_path) ?>" alt="Product graph">
                             <?php else: ?>
                                 <i class="ph ph-image" style="font-size: 32px; color:#ccc;"></i>
                             <?php endif; ?>

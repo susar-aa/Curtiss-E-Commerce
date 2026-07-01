@@ -66,7 +66,7 @@
                             <td>
                                 <div style="display:flex; align-items:center; gap:12px;">
                                     <?php if(!empty($item['image_path'])): ?>
-                                        <img src="<?= getProductImageUrl($item['image_path']) ?>" alt="Thumbnail" style="width:40px; height:40px; object-fit:contain; border:1px solid var(--card-border); border-radius:6px; background:#fff;" onerror="console.error('Image load failed for cart item ID <?= $item['item_id'] ?>: ' + this.src);">
+                                        <img src="<?= APP_URL ?>/uploads/products/<?= htmlspecialchars($item['image_path']) ?>" alt="Thumbnail" style="width:40px; height:40px; object-fit:contain; border:1px solid var(--card-border); border-radius:6px; background:#fff;">
                                     <?php else: ?>
                                         <div style="width:40px; height:40px; border:1px solid var(--card-border); border-radius:6px; background:#f0f2f6; display:flex; align-items:center; justify-content:center; color:#999;"><i class="ph ph-image"></i></div>
                                     <?php endif; ?>
