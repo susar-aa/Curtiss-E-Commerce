@@ -415,126 +415,172 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curtiss Storefront - Premium E-Commerce</title>
-    <!-- Outfit Font & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Curtiss Stationery - Premium E-Commerce</title>
+    <!-- Elegant Fonts: Lora (Serif) for headings, Inter (Sans) for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
+        /* * PREMIUM STATIONERY DESIGN SYSTEM 
+         */
         :root {
-            /* Palette: Modern HSL Tailored Colors */
-            --primary: #4f46e5;
-            --primary-hover: #4338ca;
-            --primary-rgb: 79, 70, 229;
-            --primary-light: rgba(79, 70, 229, 0.08);
+            /* Colors - Light Mode (Warm, Elegant) */
+            --bg-body: #FAF9F6; /* Soft off-white paper tone */
+            --bg-card: #FFFFFF;
+            --bg-input: #FFFFFF;
+            --bg-subtle: #F0EFEA;
             
-            --secondary: #0ea5e9;
-            --secondary-hover: #0284c7;
+            --brand-primary: #2C4A3E; /* Deep sophisticated sage/forest green */
+            --brand-primary-hover: #1E332B;
+            --brand-accent: #C4A47C; /* Muted gold/bronze */
             
-            --bg-site: #f8fafc;
-            --card-bg: #ffffff;
-            --card-bg-rgb: 255, 255, 255;
+            --text-main: #2D2C2A;
+            --text-muted: #6B6A65;
+            --text-inverse: #FFFFFF;
             
-            --text-dark: #0f172a;
-            --text-muted: #64748b;
+            --border-light: #E8E6E1;
+            --border-strong: #D1CEC7;
             
-            --border-color: #e2e8f0;
-            --border-hover: #cbd5e1;
+            /* Status */
+            --status-success-bg: #E8F3EC;
+            --status-success-text: #236B42;
+            --status-danger-bg: #FCE8E8;
+            --status-danger-text: #9B2C2C;
+
+            /* Typography */
+            --font-heading: 'Lora', serif;
+            --font-body: 'Inter', sans-serif;
             
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
-            --shadow-premium: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
+            /* UI Elements */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-full: 999px;
             
-            --rounded: 12px;
-            --rounded-sm: 8px;
-            --rounded-lg: 20px;
-            --rounded-full: 9999px;
+            --shadow-sm: 0 2px 8px rgba(44, 74, 62, 0.04);
+            --shadow-md: 0 8px 24px rgba(44, 74, 62, 0.08);
+            --shadow-float: 0 16px 40px rgba(44, 74, 62, 0.12);
             
-            --font-main: 'Outfit', sans-serif;
-            --header-height: 72px;
-            
-            --badge-success-bg: #dcfce7;
-            --badge-success-text: #166534;
-            --badge-danger-bg: #fee2e2;
-            --badge-danger-text: #991b1b;
+            --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --header-height: 80px;
         }
 
         [data-theme="dark"] {
-            --bg-site: #09090b;
-            --card-bg: #18181b;
-            --card-bg-rgb: 24, 24, 27;
+            /* Colors - Dark Mode (Deep, Luxurious) */
+            --bg-body: #161817; 
+            --bg-card: #1E201F;
+            --bg-input: #161817;
+            --bg-subtle: #2A2D2B;
             
-            --text-dark: #f4f4f5;
-            --text-muted: #a1a1aa;
+            --brand-primary: #8FBCA3; /* Softened green for dark mode visibility */
+            --brand-primary-hover: #A8CEB8;
+            --brand-accent: #DBC1A0;
             
-            --border-color: #27272a;
-            --border-hover: #3f3f46;
+            --text-main: #F4F4F4;
+            --text-muted: #A3A3A3;
+            --text-inverse: #161817;
             
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.25);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.25);
-            --shadow-premium: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            --border-light: #333634;
+            --border-strong: #4A4D4B;
             
-            --badge-success-bg: rgba(22, 101, 52, 0.2);
-            --badge-success-text: #4ade80;
-            --badge-danger-bg: rgba(153, 27, 27, 0.2);
-            --badge-danger-text: #f87171;
+            --status-success-bg: rgba(35, 107, 66, 0.2);
+            --status-success-text: #8FBCA3;
+            --status-danger-bg: rgba(155, 44, 44, 0.2);
+            --status-danger-text: #FCA5A5;
             
-            --primary-light: rgba(79, 70, 229, 0.15);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
+            --shadow-float: 0 16px 40px rgba(0, 0, 0, 0.6);
         }
 
-        /* Base & Resets */
+        /* RESETS & BASE */
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
-            outline-color: var(--primary);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: var(--font-main);
-            background-color: var(--bg-site);
-            color: var(--text-dark);
-            margin: 0;
-            padding: 0;
+            font-family: var(--font-body);
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            text-rendering: optimizeLegibility;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        /* Layout Container */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            line-height: 1.3;
+            color: var(--text-main);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        input, select, textarea, button {
+            font-family: inherit;
+        }
+
+        /* LAYOUT */
         .container {
             width: 100%;
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 24px;
         }
-
-        @media (max-width: 640px) {
-            .container {
-                padding: 0 16px;
-            }
+        
+        @media (max-width: 768px) {
+            .container { padding: 0 16px; }
         }
 
-        /* Header & Glassmorphic Navigation */
+        /* HEADER & NAVIGATION */
+        .top-banner {
+            background-color: var(--brand-primary);
+            color: var(--text-inverse);
+            text-align: center;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            padding: 8px 16px;
+            text-transform: uppercase;
+        }
+
         header {
-            background-color: rgba(var(--card-bg-rgb), 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(var(--bg-card), 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-light);
             position: sticky;
             top: 0;
             z-index: 1000;
             height: var(--header-height);
             display: flex;
             align-items: center;
-            transition: background-color 0.3s, border-color 0.3s;
+            transition: background-color 0.4s, border-color 0.4s;
         }
 
-        .navbar {
+        .nav-wrapper {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -542,1336 +588,871 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
         }
 
         .brand-logo {
+            font-family: var(--font-heading);
             font-size: 24px;
-            font-weight: 800;
-            color: var(--primary);
-            text-decoration: none;
+            font-weight: 600;
+            color: var(--text-main);
             display: flex;
             align-items: center;
-            gap: 10px;
-            letter-spacing: -0.75px;
-            transition: transform 0.2s ease;
+            gap: 12px;
+            letter-spacing: -0.5px;
         }
-
-        .brand-logo:hover {
-            transform: scale(1.02);
+        
+        .brand-logo i {
+            color: var(--brand-primary);
         }
 
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 24px;
+            gap: 32px;
         }
 
-        .nav-links a {
-            color: var(--text-dark);
-            text-decoration: none;
+        .nav-link {
+            font-size: 14px;
             font-weight: 500;
-            font-size: 15px;
+            color: var(--text-muted);
             position: relative;
-            padding: 4px 0;
-            transition: color 0.2s ease;
+            padding: 8px 0;
         }
 
-        .nav-links a::after {
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-main);
+        }
+
+        .nav-link::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             width: 0;
-            height: 2px;
-            background-color: var(--primary);
-            transition: width 0.2s ease;
+            height: 1px;
+            background-color: var(--text-main);
+            transition: width 0.3s ease;
         }
 
-        .nav-links a:hover::after, .nav-links a.active::after {
+        .nav-link:hover::after, .nav-link.active::after {
             width: 100%;
         }
 
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--primary);
-        }
-
-        /* Action Buttons & Badges */
-        .cart-btn {
-            display: inline-flex;
+        .nav-actions {
+            display: flex;
             align-items: center;
-            padding: 8px 18px;
-            background-color: var(--primary-light);
-            border-radius: var(--rounded-full);
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 14px;
-            text-decoration: none;
-            gap: 8px;
-            transition: all 0.2s ease;
+            gap: 20px;
         }
 
-        .cart-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.15);
-        }
-
-        .cart-badge {
-            background-color: #ef4444;
-            color: #ffffff;
-            font-size: 11px;
-            font-weight: 700;
-            border-radius: var(--rounded-full);
-            padding: 2px 7px;
-            min-width: 18px;
-            text-align: center;
-            display: inline-block;
-        }
-
-        .theme-toggle {
+        .icon-btn {
             background: none;
-            border: 1px solid var(--border-color);
-            border-radius: var(--rounded-sm);
+            border: none;
+            color: var(--text-main);
+            font-size: 22px;
             cursor: pointer;
-            width: 38px;
-            height: 38px;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-dark);
-            transition: all 0.2s ease;
+            transition: transform 0.2s;
         }
 
-        .theme-toggle:hover {
-            background-color: var(--border-color);
+        .icon-btn:hover {
             transform: scale(1.05);
+            color: var(--brand-primary);
         }
 
-        /* Mobile Hamburger & Menu */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: 1px solid var(--border-color);
-            border-radius: var(--rounded-sm);
-            cursor: pointer;
-            width: 38px;
-            height: 38px;
+        .cart-badge {
+            position: absolute;
+            top: -6px;
+            right: -8px;
+            background-color: var(--brand-accent);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 600;
+            height: 18px;
+            min-width: 18px;
+            border-radius: var(--radius-full);
+            display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-dark);
-            font-size: 20px;
-            transition: all 0.2s ease;
+            padding: 0 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        .menu-toggle:hover {
-            background-color: var(--border-color);
+        .role-badge {
+            font-size: 11px;
+            font-weight: 500;
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border-strong);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
-        /* Mobile Menu Drawer */
-        .mobile-drawer-overlay {
+        /* MOBILE MENU DRAWER */
+        .mobile-toggle {
+            display: none;
+        }
+
+        .drawer-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.4);
-            z-index: 1999;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
-            backdrop-filter: blur(4px);
+            z-index: 1999;
         }
-
-        .mobile-drawer-overlay.open {
+        .drawer-overlay.active {
             opacity: 1;
             pointer-events: auto;
         }
 
-        .mobile-drawer {
+        .drawer {
             position: fixed;
             top: 0;
-            right: -320px;
-            width: 300px;
+            right: -100%;
+            width: 85%;
+            max-width: 360px;
             height: 100vh;
-            background-color: var(--card-bg);
+            background: var(--bg-card);
             z-index: 2000;
-            box-shadow: var(--shadow-premium);
-            transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            padding: 24px;
-            box-sizing: border-box;
+            padding: 32px 24px;
+            box-shadow: var(--shadow-float);
+            transition: right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            display: flex;
+            flex-direction: column;
+        }
+        .drawer.active {
+            right: 0;
+        }
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        .drawer-links {
             display: flex;
             flex-direction: column;
             gap: 24px;
         }
-
-        .mobile-drawer.open {
-            right: 0;
+        .drawer-links a {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            color: var(--text-main);
         }
-
-        .drawer-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 16px;
-        }
-
-        .close-drawer {
-            background: none;
-            border: none;
-            font-size: 22px;
-            cursor: pointer;
-            color: var(--text-muted);
-            transition: color 0.2s;
-        }
-
-        .close-drawer:hover {
-            color: var(--text-dark);
-        }
-
-        .drawer-content {
+        .drawer-footer {
+            margin-top: auto;
+            border-top: 1px solid var(--border-light);
+            padding-top: 24px;
             display: flex;
             flex-direction: column;
             gap: 16px;
         }
 
-        .drawer-content a {
-            color: var(--text-dark);
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 500;
-            padding: 10px 14px;
-            border-radius: var(--rounded-sm);
-            transition: all 0.2s;
-        }
-
-        .drawer-content a:hover, .drawer-content a.active {
-            background-color: var(--primary-light);
-            color: var(--primary);
-            padding-left: 18px;
-        }
-
-        .drawer-user-info {
-            padding: 12px 14px;
-            background-color: var(--bg-site);
-            border-radius: var(--rounded-sm);
-            font-size: 14px;
-        }
-
-        /* Buttons styling */
+        /* BUTTONS */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            background-color: var(--primary);
-            color: #ffffff;
-            padding: 12px 24px;
-            border-radius: var(--rounded);
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            border: 1px solid transparent;
+            padding: 12px 28px;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            border-radius: var(--radius-sm);
             cursor: pointer;
-            font-size: 15px;
-            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.15);
+            transition: var(--transition-smooth);
+            border: 1px solid transparent;
+            text-transform: uppercase;
         }
-
-        .btn:hover {
-            background-color: var(--primary-hover);
+        
+        .btn-primary {
+            background-color: var(--brand-primary);
+            color: var(--text-inverse);
+        }
+        .btn-primary:hover {
+            background-color: var(--brand-primary-hover);
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.25);
+            box-shadow: var(--shadow-md);
         }
-
-        .btn:active {
-            transform: translateY(0);
-        }
-
+        
         .btn-outline {
             background-color: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            box-shadow: none;
+            border-color: var(--border-strong);
+            color: var(--text-main);
         }
-
         .btn-outline:hover {
-            background-color: var(--primary-light);
-            color: var(--primary-hover);
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.05);
+            border-color: var(--brand-primary);
+            color: var(--brand-primary);
+            background-color: var(--bg-subtle);
         }
-
-        .btn:disabled, .btn-outline:disabled {
-            opacity: 0.5;
+        
+        .btn:disabled {
+            opacity: 0.6;
             cursor: not-allowed;
             transform: none !important;
             box-shadow: none !important;
         }
 
-        /* Hero Banner */
-        .hero {
-            padding: 80px 24px;
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%);
-            border-radius: var(--rounded-lg);
-            border: 1px solid var(--border-color);
-            text-align: center;
-            margin-top: 24px;
-            margin-bottom: 48px;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .hero h1 {
-            font-size: 44px;
-            font-weight: 800;
-            margin: 0 0 16px 0;
-            letter-spacing: -1.25px;
-            line-height: 1.15;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 17px;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 32px auto;
-            line-height: 1.6;
-        }
-
-        .hero-actions {
+        /* ALERTS */
+        .alert {
+            padding: 16px 20px;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
             display: flex;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 12px;
+            margin: 24px 0;
+            line-height: 1.5;
+        }
+        .alert-error {
+            background-color: var(--status-danger-bg);
+            color: var(--status-danger-text);
+            border: 1px solid rgba(155, 44, 44, 0.2);
+        }
+        .alert-success {
+            background-color: var(--status-success-bg);
+            color: var(--status-success-text);
+            border: 1px solid rgba(35, 107, 66, 0.2);
         }
 
-        /* Featured Categories */
-        .featured-section {
-            margin-bottom: 56px;
-        }
-
-        .featured-title {
-            font-size: 22px;
-            font-weight: 700;
+        /* FORMS */
+        .form-group {
             margin-bottom: 24px;
-            letter-spacing: -0.5px;
         }
-
-        .categories-grid {
+        .form-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .form-control {
+            width: 100%;
+            padding: 14px 16px;
+            background-color: var(--bg-input);
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius-sm);
+            color: var(--text-main);
+            font-size: 15px;
+            transition: all 0.2s ease;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: var(--brand-primary);
+            box-shadow: 0 0 0 3px rgba(44, 74, 62, 0.1);
+        }
+        .form-row {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
 
-        .category-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--rounded);
-            padding: 28px 20px;
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            padding: 100px 24px;
             text-align: center;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.25s ease;
-            text-decoration: none;
-            color: inherit;
+            background-color: var(--bg-card);
+            border-bottom: 1px solid var(--border-light);
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at center, var(--bg-subtle) 0%, transparent 70%);
+            opacity: 0.6;
+            z-index: 0;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 56px);
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+        .hero p {
+            font-size: clamp(16px, 2vw, 20px);
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-inline: auto;
         }
 
-        .category-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-md);
-            border-color: var(--primary);
+        /* CATEGORIES */
+        .section-title {
+            text-align: center;
+            margin: 64px 0 40px;
+            font-size: 28px;
         }
-
-        .category-icon {
-            font-size: 36px;
-            color: var(--primary);
-            margin-bottom: 12px;
-            transition: transform 0.2s ease;
-        }
-
-        .category-card:hover .category-icon {
-            transform: scale(1.1);
-        }
-
-        .category-name {
-            margin: 0;
-            font-size: 15px;
-            font-weight: 600;
-            letter-spacing: -0.25px;
-        }
-
-        /* Shop Layout (Filters + Grid) */
-        .shop-layout {
+        .categories-grid {
             display: grid;
-            grid-template-columns: 260px 1fr;
-            gap: 32px;
-            margin-top: 24px;
-            margin-bottom: 56px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+        .cat-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            padding: 40px 24px;
+            text-align: center;
+            transition: var(--transition-smooth);
+        }
+        .cat-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-strong);
+            box-shadow: var(--shadow-sm);
+        }
+        .cat-icon {
+            font-size: 40px;
+            color: var(--brand-accent);
+            margin-bottom: 16px;
+        }
+        .cat-name {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            color: var(--text-main);
+        }
+
+        /* SHOP LAYOUT */
+        .shop-header {
+            margin: 40px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .search-bar {
+            display: flex;
+            width: 100%;
+            max-width: 480px;
+            position: relative;
+        }
+        .search-bar input {
+            padding-right: 48px;
+            border-radius: var(--radius-full);
+        }
+        .search-bar button {
+            position: absolute;
+            right: 6px;
+            top: 6px;
+            bottom: 6px;
+            background: var(--brand-primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius-full);
+            width: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .search-bar button:hover { background: var(--brand-primary-hover); }
+
+        .shop-container {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
             align-items: start;
         }
-
-        .filters-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--rounded);
-            padding: 24px;
+        
+        .sidebar {
             position: sticky;
-            top: calc(var(--header-height) + 24px);
-            box-shadow: var(--shadow-sm);
-            transition: background-color 0.3s, border-color 0.3s;
+            top: calc(var(--header-height) + 40px);
         }
-
-        .filter-section h4 {
-            margin: 0 0 16px 0;
-            font-size: 12px;
+        .sidebar-title {
+            font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--text-muted);
-            font-weight: 700;
+            margin-bottom: 20px;
+            font-family: var(--font-body);
         }
-
         .filter-list {
             list-style: none;
-            padding: 0;
-            margin: 0;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 12px;
         }
-
         .filter-list a {
-            color: var(--text-dark);
-            text-decoration: none;
-            font-size: 14.5px;
+            font-size: 15px;
+            color: var(--text-muted);
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 8px 12px;
-            border-radius: var(--rounded-sm);
-            transition: all 0.2s ease;
+            transition: color 0.2s;
+        }
+        .filter-list a:hover, .filter-list a.active {
+            color: var(--brand-primary);
             font-weight: 500;
         }
 
-        .filter-list a:hover {
-            background-color: var(--bg-site);
-            color: var(--primary);
-        }
-
-        .filter-list a.active {
-            background-color: var(--primary-light);
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        /* Products Grid */
-        .products-grid-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-        }
-
-        .products-grid-title {
-            margin: 0;
-            font-size: 22px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .products-grid {
+        /* PRODUCT GRID */
+        .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 32px;
         }
-
-        .prod-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--rounded);
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        .product-card {
             display: flex;
             flex-direction: column;
-            text-decoration: none;
-            color: inherit;
-            height: 100%;
-            min-width: 0;
+            background: transparent;
+            transition: var(--transition-smooth);
+            group: hover;
         }
-
-        .prod-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-premium);
-            border-color: var(--border-hover);
-        }
-
-        .prod-img {
-            aspect-ratio: 1 / 1;
-            width: 100%;
-            height: auto;
-            background-color: rgba(0,0,0,0.01);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+        .product-img-wrapper {
             position: relative;
-            border-bottom: 1px solid var(--border-color);
-            padding: 16px;
-        }
-
-        .prod-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            transition: transform 0.3s ease;
-        }
-
-        .no-img {
-            font-size: 32px;
-            color: var(--text-muted);
-            opacity: 0.5;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            aspect-ratio: 1/1;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow: hidden;
+            margin-bottom: 16px;
+            transition: border-color 0.3s;
         }
-
-        .prod-card:hover .prod-img img {
-            transform: scale(1.06);
+        .product-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
-
-        .prod-details {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
+        .product-card:hover .product-img-wrapper {
+            border-color: var(--border-strong);
         }
-
-        .prod-brand {
-            font-size: 11px;
+        .product-card:hover .product-img-wrapper img {
+            transform: scale(1.05);
+        }
+        .empty-img {
             color: var(--text-muted);
+            opacity: 0.3;
+            font-size: 48px;
+        }
+        
+        .product-brand {
+            font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-weight: 700;
-            margin-bottom: 8px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
         }
-
-        .prod-details h3 {
-            margin: 0 0 10px 0;
-            font-size: 16px;
-            font-weight: 600;
+        .product-title {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            margin-bottom: 8px;
             line-height: 1.4;
-            letter-spacing: -0.25px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            height: 44px; /* Fixed height for alignments */
         }
-
-        .prod-status-row {
-            margin-bottom: 16px;
-        }
-
-        .prod-price-row {
+        .product-footer {
+            margin-top: auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-top: auto;
-            border-top: 1px solid var(--border-color);
-            padding-top: 14px;
         }
-
-        .price-badge {
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--primary);
-            letter-spacing: -0.5px;
-        }
-
-        .role-indicator {
-            font-size: 11px;
-            background-color: var(--bg-site);
-            color: var(--text-muted);
-            padding: 4px 10px;
-            border-radius: var(--rounded-full);
+        .product-price {
+            font-size: 16px;
             font-weight: 600;
-            border: 1px solid var(--border-color);
+            color: var(--text-main);
         }
-
-        .role-indicator-wholesale {
-            background-color: rgba(79, 70, 229, 0.1);
-            color: var(--primary);
-            border-color: rgba(79, 70, 229, 0.15);
-        }
-
-        .stock-badge {
-            font-size: 11px;
-            font-weight: 600;
-            padding: 3px 10px;
-            border-radius: var(--rounded-full);
-            display: inline-flex;
+        .stock-indicator {
+            font-size: 12px;
+            font-weight: 500;
+            display: flex;
             align-items: center;
             gap: 4px;
         }
-
-        .stock-in {
-            background-color: var(--badge-success-bg);
-            color: var(--badge-success-text);
+        .stock-indicator::before {
+            content: '';
+            width: 6px; height: 6px;
+            border-radius: 50%;
         }
+        .in-stock::before { background-color: var(--status-success-text); }
+        .out-stock::before { background-color: var(--status-danger-text); }
 
-        .stock-out {
-            background-color: var(--badge-danger-bg);
-            color: var(--badge-danger-text);
-        }
-
-        /* Search Form Layout */
-        .search-bar-row {
-            display: flex;
-            gap: 12px;
-            margin-top: 24px;
-            margin-bottom: 32px;
-            width: 100%;
-        }
-
-        .search-bar-row .form-control {
-            max-width: 500px;
-            flex-grow: 1;
-        }
-
-        /* Detail page redesign */
-        .detail-grid {
+        /* PRODUCT DETAIL */
+        .detail-layout {
             display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 48px;
-            margin: 40px 0;
-            align-items: start;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            margin: 64px 0 100px;
         }
-
-        .detail-img {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--rounded-lg);
-            height: 480px;
+        .detail-gallery {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            aspect-ratio: 4/5;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
             padding: 24px;
-            box-shadow: var(--shadow-sm);
         }
-
-        .detail-img img {
-            max-width: 95%;
-            max-height: 95%;
+        .detail-gallery img {
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
         }
-
-        .detail-content {
-            padding: 8px 0;
+        .detail-info {
+            padding-top: 24px;
         }
-
         .detail-brand {
             font-size: 12px;
-            color: var(--primary);
-            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
+            color: var(--brand-accent);
+            margin-bottom: 16px;
             display: block;
-            margin-bottom: 8px;
+            font-weight: 600;
         }
-
         .detail-title {
-            font-size: 32px;
-            font-weight: 800;
-            margin: 0 0 16px 0;
-            letter-spacing: -0.75px;
+            font-size: 40px;
+            margin-bottom: 24px;
             line-height: 1.2;
         }
-
-        .detail-price {
-            font-size: 26px;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 24px;
-            letter-spacing: -0.75px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .detail-price-type {
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-muted);
-        }
-
-        .detail-description {
-            color: var(--text-muted);
-            line-height: 1.6;
+        .detail-price-wrap {
             margin-bottom: 32px;
-            font-size: 15px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border-light);
         }
-
+        .detail-price {
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .detail-desc {
+            font-size: 16px;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
         .detail-form {
-            border-top: 1px solid var(--border-color);
-            padding-top: 32px;
+            background: var(--bg-card);
+            padding: 32px;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
         }
-
-        .action-row {
+        .qty-row {
             display: flex;
             gap: 16px;
             align-items: flex-end;
-            margin-top: 16px;
         }
 
-        /* Cart Page Table & Grid */
-        .cart-title {
-            font-size: 28px;
-            font-weight: 800;
-            margin-top: 32px;
-            margin-bottom: 24px;
-            letter-spacing: -0.5px;
+        /* CART & CHECKOUT */
+        .page-header {
+            text-align: center;
+            margin: 64px 0 48px;
         }
-
-        .cart-wrapper {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--rounded-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
+        .page-header h1 {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+        
+        .cart-table-wrap {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            overflow-x: auto;
             margin-bottom: 32px;
         }
-
-        .cart-table {
+        .table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 15px;
             text-align: left;
         }
-
-        .cart-table th {
-            padding: 16px 24px;
-            font-weight: 600;
-            background-color: rgba(0, 0, 0, 0.015);
-            color: var(--text-muted);
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .cart-table td {
+        .table th {
             padding: 20px 24px;
-            border-bottom: 1px solid var(--border-color);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-light);
+            font-weight: 500;
+        }
+        .table td {
+            padding: 24px;
+            border-bottom: 1px solid var(--border-light);
             vertical-align: middle;
         }
-
-        .cart-table tr:last-child td {
-            border-bottom: none;
+        .table tr:last-child td { border-bottom: none; }
+        
+        .cart-item-name {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            margin-bottom: 4px;
         }
-
-        .cart-product-title {
-            font-weight: 600;
-            color: var(--text-dark);
-            font-size: 15px;
-        }
-
-        .cart-product-option {
-            font-size: 12px;
-            color: var(--text-muted);
-            display: block;
-            margin-top: 4px;
-        }
-
-        .cart-sku {
-            font-family: monospace;
-            background-color: var(--bg-site);
-            padding: 2px 8px;
-            border-radius: var(--rounded-sm);
+        .cart-item-meta {
             font-size: 13px;
+            color: var(--text-muted);
         }
-
         .cart-qty-input {
-            width: 80px !important;
+            width: 80px;
             text-align: center;
-            padding: 6px 10px;
+            padding: 8px;
         }
-
-        .cart-total-row {
-            background-color: rgba(0, 0, 0, 0.01);
-        }
-
-        .cart-total-label {
-            font-weight: 600;
-            font-size: 16px;
-            text-align: right;
-            padding-right: 24px;
-        }
-
-        .cart-total-value {
-            font-weight: 800;
-            font-size: 22px;
-            color: var(--primary);
-            text-align: right;
-            letter-spacing: -0.5px;
-        }
-
-        .cart-actions {
+        
+        .cart-summary {
+            background: var(--bg-subtle);
+            padding: 32px 40px;
+            border-radius: var(--radius-sm);
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: center;
-            margin-bottom: 56px;
-            gap: 16px;
-            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 64px;
+        }
+        .summary-total {
+            font-family: var(--font-heading);
+            font-size: 24px;
         }
 
-        /* Empty Cart State */
-        .empty-state {
-            background-color: var(--card-bg);
-            border: 1px dashed var(--border-color);
-            border-radius: var(--rounded-lg);
-            padding: 64px 32px;
-            text-align: center;
-            box-shadow: var(--shadow-sm);
-            max-width: 500px;
-            margin: 48px auto;
-        }
-
-        .empty-icon {
-            font-size: 56px;
-            color: var(--text-muted);
-            margin-bottom: 16px;
-        }
-
-        .empty-state p {
-            color: var(--text-muted);
-            font-size: 16px;
-            margin-bottom: 24px;
-        }
-
-        /* Checkout page layout */
-        .checkout-grid {
+        .checkout-layout {
             display: grid;
-            grid-template-columns: 1fr 380px;
-            gap: 32px;
-            margin-top: 32px;
-            margin-bottom: 56px;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 64px;
+            margin-bottom: 80px;
             align-items: start;
         }
-
-        .checkout-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--rounded-lg);
-            padding: 32px;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .checkout-title {
-            margin-top: 0;
-            font-weight: 800;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 16px;
-            margin-bottom: 24px;
-            font-size: 20px;
-            letter-spacing: -0.5px;
-        }
-
-        .summary-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--rounded-lg);
-            padding: 24px;
-            box-shadow: var(--shadow-sm);
-            position: sticky;
-            top: calc(var(--header-height) + 24px);
-        }
-
-        .summary-item-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-            margin-bottom: 16px;
-            gap: 12px;
-        }
-
-        .summary-item-name {
-            color: var(--text-dark);
-            line-height: 1.4;
-        }
-
-        .summary-grand-total {
-            border-top: 1px dashed var(--border-color);
-            padding-top: 16px;
-            display: flex;
-            justify-content: space-between;
-            font-weight: 800;
-            font-size: 18px;
-            letter-spacing: -0.5px;
-            margin-top: 16px;
-        }
-
-        /* Forms Elements */
-        .card-form {
-            max-width: 500px;
-            margin: 48px auto;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--rounded-lg);
+        .checkout-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
             padding: 40px;
-            box-shadow: var(--shadow-premium);
         }
-
-        .card-form-title {
-            margin-top: 0;
-            font-weight: 800;
-            font-size: 24px;
-            text-align: center;
-            margin-bottom: 8px;
-            letter-spacing: -0.75px;
-        }
-
-        .card-form-desc {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 32px;
-            line-height: 1.5;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 13.5px;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1.5px solid var(--border-color);
-            border-radius: var(--rounded-sm);
-            background-color: var(--input-bg);
-            color: var(--text-dark);
-            box-sizing: border-box;
-            font-size: 14.5px;
-            font-family: var(--font-main);
-            transition: all 0.2s ease;
-        }
-
-        .form-control:hover {
-            border-color: var(--border-hover);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
-        }
-
-        .form-row {
-            display: flex;
-            gap: 16px;
-        }
-
-        @media (max-width: 640px) {
-            .form-row {
-                flex-direction: column;
-                gap: 0;
-            }
-        }
-
-        /* Success/Error Alerts */
-        .alert-box {
-            padding: 14px 20px;
-            border-radius: var(--rounded);
-            font-size: 14.5px;
+        .checkout-box h3 {
+            font-size: 20px;
             margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .summary-item {
             display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            line-height: 1.5;
-        }
-
-        .alert-danger {
-            background-color: var(--badge-danger-bg);
-            color: var(--badge-danger-text);
-            border: 1px solid rgba(239, 68, 68, 0.15);
-        }
-
-        .alert-success {
-            background-color: var(--badge-success-bg);
-            color: var(--badge-success-text);
-            border: 1px solid rgba(34, 197, 94, 0.15);
-        }
-
-        /* Success State Cards */
-        .card-success {
-            text-align: center;
-            padding: 48px 32px;
-            max-width: 550px;
-            margin: 48px auto;
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: var(--rounded-lg);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .success-icon {
-            font-size: 64px;
-            color: #10b981;
+            justify-content: space-between;
             margin-bottom: 16px;
+            font-size: 15px;
+        }
+        .summary-item-title {
+            color: var(--text-muted);
+            padding-right: 16px;
         }
 
-        /* Footer */
+        /* AUTH FORMS */
+        .auth-container {
+            max-width: 480px;
+            margin: 80px auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            padding: 48px 40px;
+            box-shadow: var(--shadow-sm);
+        }
+        .auth-container h2 {
+            text-align: center;
+            margin-bottom: 32px;
+            font-size: 28px;
+        }
+        .auth-footer {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        .auth-footer a {
+            color: var(--brand-primary);
+            font-weight: 500;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        /* SUCCESS STATES */
+        .success-state {
+            max-width: 560px;
+            margin: 100px auto;
+            text-align: center;
+            padding: 64px 40px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            box-shadow: var(--shadow-sm);
+        }
+        .success-icon {
+            font-size: 72px;
+            color: var(--status-success-text);
+            margin-bottom: 24px;
+        }
+
+        /* FOOTER */
         footer {
             margin-top: auto;
-            background-color: var(--card-bg);
-            border-top: 1px solid var(--border-color);
+            border-top: 1px solid var(--border-light);
+            background-color: var(--bg-card);
             padding: 40px 0;
             text-align: center;
             color: var(--text-muted);
-            font-size: 14.5px;
-            transition: background-color 0.3s, border-color 0.3s;
+            font-size: 14px;
         }
 
-        footer p {
-            margin: 0;
-        }
-
-        /* Responsive Breakpoints & Overrides */
+        /* RESPONSIVE OVERRIDES */
         @media (max-width: 1024px) {
-            .nav-links {
-                display: none; /* Hide standard navbar link group */
-            }
-
-            .menu-toggle {
-                display: flex; /* Show menu toggle */
-            }
-
-            .categories-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .shop-layout {
-                grid-template-columns: 1fr;
-                gap: 24px;
-            }
-
-            .filters-card {
-                padding: 16px;
-                border: none;
-                background: transparent;
-                box-shadow: none;
-                margin-bottom: 8px;
-                position: static;
-            }
-
-            .filter-section h4 {
-                display: none;
-            }
-
-            .filter-list {
-                flex-direction: row;
-                overflow-x: auto;
-                white-space: nowrap;
-                padding: 8px 0;
-                gap: 8px;
-                scrollbar-width: none;
-            }
-
-            .filter-list::-webkit-scrollbar {
-                display: none;
-            }
-
-            .filter-list li {
-                display: inline-block;
-            }
-
-            .filter-list a {
-                display: inline-flex;
-                padding: 8px 16px;
-                background-color: var(--card-bg);
-                border: 1px solid var(--border-color);
-                border-radius: 24px;
-                font-size: 13px;
-                box-shadow: var(--shadow-sm);
-            }
-
-            .filter-list a.active {
-                background-color: var(--primary);
-                color: #ffffff !important;
-                border-color: var(--primary);
-            }
+            .shop-container { grid-template-columns: 1fr; }
+            .sidebar { position: static; margin-bottom: 32px; }
+            .filter-list { flex-direction: row; flex-wrap: wrap; }
+            .filter-list a { background: var(--bg-subtle); padding: 8px 16px; border-radius: var(--radius-full); }
+            
+            .detail-layout { grid-template-columns: 1fr; gap: 40px; }
+            .detail-gallery { aspect-ratio: auto; height: 50vh; }
+            
+            .checkout-layout { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
-            .hero {
-                padding: 64px 16px;
-                margin-top: 16px;
-                margin-bottom: 32px;
-            }
-
-            .hero h1 {
-                font-size: 32px;
-            }
-
-            .hero p {
-                font-size: 15px;
-            }
-
-            .categories-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
-            }
-
-            .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-                gap: 16px;
-            }
-
-            .prod-details {
-                padding: 14px;
-            }
-
-            .prod-details h3 {
-                font-size: 14px;
-                height: 40px;
-            }
-
-            .price-badge {
-                font-size: 15px;
-            }
-
-            /* Cart Table Responsive View (Transforms table to list block) */
-            .cart-table thead {
-                display: none;
-            }
-
-            .cart-table tbody tr {
+            .nav-links { display: none; }
+            .mobile-toggle { display: flex; }
+            
+            .form-row { grid-template-columns: 1fr; }
+            
+            /* Responsive Cart Table */
+            .table thead { display: none; }
+            .table tbody tr {
                 display: flex;
                 flex-direction: column;
-                padding: 16px 20px;
-                border-bottom: 1px solid var(--border-color);
-                position: relative;
+                padding: 16px 0;
+                border-bottom: 1px solid var(--border-light);
             }
-
-            .cart-table td {
+            .table td {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                padding: 8px 0;
-                border-bottom: none;
-                width: 100% !important;
+                padding: 8px 16px;
+                border: none;
             }
-
-            .cart-table td::before {
+            .table td::before {
                 content: attr(data-label);
-                font-weight: 700;
-                font-size: 13px;
-                color: var(--text-muted);
+                font-size: 12px;
                 text-transform: uppercase;
+                color: var(--text-muted);
+                font-weight: 500;
             }
-
-            .cart-table td:first-child {
-                padding-top: 0;
-            }
-
-            .cart-qty-input {
-                width: 100px !important;
-            }
-
-            .cart-total-row {
-                display: flex !important;
-                flex-direction: row !important;
-                justify-content: space-between !important;
-                padding: 20px !important;
-            }
-
-            .cart-total-row td {
-                width: auto !important;
-                padding: 0 !important;
-                display: block !important;
-            }
-
-            .cart-total-row td::before {
-                display: none;
-            }
-
-            .cart-total-label {
-                text-align: left;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .categories-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
-
-            .prod-img {
-                padding: 8px;
-            }
-
-            .prod-details {
-                padding: 10px;
-            }
-
-            .prod-details h3 {
-                font-size: 13px;
-                height: 36px;
-                margin-bottom: 6px;
-            }
-
-            .price-badge {
-                font-size: 14px;
-            }
-
-            .role-indicator {
-                font-size: 9px;
-                padding: 2px 6px;
-            }
-
-            .card-form {
-                padding: 24px 16px;
-                margin: 24px auto;
-            }
-
-            .detail-img {
-                height: 280px;
-            }
-
-            .action-row {
+            
+            .cart-summary {
                 flex-direction: column;
                 align-items: stretch;
+                text-align: center;
+                gap: 20px;
+                padding: 24px;
             }
-
-            .action-row .btn {
-                width: 100%;
-            }
-        }
-
-        /* Large & Ultra-wide screen improvements */
-        @media (min-width: 1440px) {
-            .container {
-                max-width: 1400px;
-            }
-            .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            }
-        }
-
-        @media (min-width: 1920px) {
-            .container {
-                max-width: 1680px;
-            }
-            .products-grid {
-                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            }
-        }
-
-        .form-row {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        .form-row > .form-group {
-            flex: 1;
-            min-width: 220px;
-            margin-bottom: 16px;
+            
+            .auth-container { padding: 32px 20px; margin: 40px auto; border: none; box-shadow: none; background: transparent; }
         }
     </style>
 </head>
 <body data-theme="light">
 
+    <!-- Top Announcement Banner -->
+    <div class="top-banner">
+        Complimentary shipping on curated collections over Rs. 5000
+    </div>
+
+    <!-- Main Navigation -->
     <header>
-        <div class="container navbar">
+        <div class="container nav-wrapper">
+            <!-- Mobile Toggle -->
+            <button class="icon-btn mobile-toggle" onclick="toggleMenu()" aria-label="Menu">
+                <i class="ph ph-list"></i>
+            </button>
+
+            <!-- Brand Logo -->
             <a href="index.php" class="brand-logo">
-                <i class="ph-bold ph-shopping-bag-open"></i> CURTISS STORE
+                <i class="ph-light ph-feather"></i>
+                Lumière
             </a>
             
-            <div class="nav-links">
-                <a href="index.php?p=home" class="<?= $page === 'home' ? 'active' : '' ?>">Home</a>
-                <a href="index.php?p=shop" class="<?= $page === 'shop' ? 'active' : '' ?>">Shop</a>
+            <!-- Desktop Links -->
+            <nav class="nav-links">
+                <a href="index.php?p=home" class="nav-link <?= $page === 'home' ? 'active' : '' ?>">Home</a>
+                <a href="index.php?p=shop" class="nav-link <?= $page === 'shop' ? 'active' : '' ?>">Collections</a>
                 
                 <?php if ($userRole === 'wholesaler'): ?>
-                    <span class="role-indicator role-indicator-wholesale"><i class="ph ph-shield-check"></i> Wholesaler Portal</span>
+                    <span class="role-badge"><i class="ph ph-briefcase"></i> Corporate Partner</span>
                 <?php elseif ($userRole === 'retail'): ?>
-                    <span class="role-indicator"><i class="ph ph-user"></i> Retail Buyer</span>
+                    <span class="role-badge"><i class="ph ph-user"></i> Member</span>
                 <?php else: ?>
-                    <a href="index.php?p=wholesaler-request" class="<?= $page === 'wholesaler-request' ? 'active' : '' ?>">Wholesale Request</a>
+                    <a href="index.php?p=wholesaler-request" class="nav-link <?= $page === 'wholesaler-request' ? 'active' : '' ?>">Corporate Gifting</a>
                 <?php endif; ?>
+            </nav>
 
+            <!-- Actions (Right) -->
+            <div class="nav-actions">
+                <button class="icon-btn" onclick="toggleTheme()" aria-label="Toggle Theme">
+                    <i class="ph ph-moon" id="theme-icon"></i>
+                </button>
+                
                 <?php if ($isLoggedIn): ?>
-                    <span style="font-weight:600; font-size:14px;"><i class="ph ph-user"></i> <?= htmlspecialchars($userName) ?></span>
-                    <a href="index.php?logout=1" style="color:#ff3b30; font-size: 13px;">Logout</a>
+                    <a href="index.php?logout=1" class="icon-btn" title="Sign out <?= htmlspecialchars($userName) ?>">
+                        <i class="ph ph-sign-out"></i>
+                    </a>
                 <?php else: ?>
-                    <a href="index.php?p=login">Login</a>
-                    <a href="index.php?p=register-retail" class="btn" style="padding: 6px 14px; font-size: 13px; box-shadow: none;">Register</a>
+                    <a href="index.php?p=login" class="icon-btn" title="Sign in">
+                        <i class="ph ph-user-circle"></i>
+                    </a>
                 <?php endif; ?>
 
-                <a href="index.php?p=cart" class="cart-btn">
-                    <i class="ph ph-shopping-cart"></i> Cart
+                <a href="index.php?p=cart" class="icon-btn">
+                    <i class="ph ph-shopping-bag"></i>
                     <span class="cart-badge"><?= count($_SESSION['ec_cart']) ?></span>
                 </a>
-
-                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">
-                    <i class="ph ph-sun" id="theme-icon"></i>
-                </button>
-            </div>
-
-            <!-- Mobile Controls -->
-            <div style="display: flex; align-items: center; gap: 8px;">
-                <!-- Theme toggle and Cart always accessible on mobile too -->
-                <a href="index.php?p=cart" class="cart-btn" style="padding: 8px 12px; font-size: 13px; display: inline-flex; border-radius: var(--rounded-full);">
-                    <i class="ph ph-shopping-cart"></i>
-                    <span class="cart-badge" style="margin-left: 2px;"><?= count($_SESSION['ec_cart']) ?></span>
-                </a>
-                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">
-                    <i class="ph ph-sun" id="theme-icon-mobile"></i>
-                </button>
-                <button class="menu-toggle" onclick="toggleMenu()" aria-label="Open Navigation Menu">
-                    <i class="ph ph-list"></i>
-                </button>
             </div>
         </div>
     </header>
 
-    <!-- Mobile Drawer Navigation -->
-    <div class="mobile-drawer-overlay" id="mobileDrawerOverlay" onclick="toggleMenu()"></div>
-    <div class="mobile-drawer" id="mobileDrawer">
+    <!-- Mobile Drawer -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="toggleMenu()"></div>
+    <div class="drawer" id="mobileDrawer">
         <div class="drawer-header">
             <a href="index.php" class="brand-logo" style="font-size: 20px;">
-                <i class="ph-bold ph-shopping-bag-open"></i> CURTISS STORE
+                <i class="ph-light ph-feather"></i> Lumière
             </a>
-            <button class="close-drawer" onclick="toggleMenu()" aria-label="Close Menu">
+            <button class="icon-btn" onclick="toggleMenu()" aria-label="Close Menu">
                 <i class="ph ph-x"></i>
             </button>
         </div>
-        <div class="drawer-content">
+        
+        <div class="drawer-links">
             <a href="index.php?p=home" class="<?= $page === 'home' ? 'active' : '' ?>">Home</a>
-            <a href="index.php?p=shop" class="<?= $page === 'shop' ? 'active' : '' ?>">Shop</a>
-            
-            <?php if ($userRole === 'wholesaler'): ?>
-                <div class="drawer-user-info" style="color: var(--primary); font-weight:600;"><i class="ph ph-shield-check"></i> Wholesaler Portal</div>
-            <?php elseif ($userRole === 'retail'): ?>
-                <div class="drawer-user-info" style="color: var(--secondary); font-weight:600;"><i class="ph ph-user"></i> Retail Buyer</div>
-            <?php else: ?>
-                <a href="index.php?p=wholesaler-request" class="<?= $page === 'wholesaler-request' ? 'active' : '' ?>">Wholesale Request</a>
+            <a href="index.php?p=shop" class="<?= $page === 'shop' ? 'active' : '' ?>">Collections</a>
+            <?php if (!$isLoggedIn && $userRole !== 'wholesaler'): ?>
+                <a href="index.php?p=wholesaler-request" class="<?= $page === 'wholesaler-request' ? 'active' : '' ?>">Corporate Gifting</a>
             <?php endif; ?>
+        </div>
 
+        <div class="drawer-footer">
             <?php if ($isLoggedIn): ?>
-                <div class="drawer-user-info">
-                    <span style="font-weight:600; display: block; margin-bottom: 8px;"><i class="ph ph-user-circle"></i> <?= htmlspecialchars($userName) ?></span>
-                    <a href="index.php?logout=1" style="color:#ff3b30; padding: 0; font-size: 14px; font-weight: 600; text-decoration: none;">Logout</a>
+                <div style="font-size: 14px; color: var(--text-muted);">
+                    Signed in as <strong><?= htmlspecialchars($userName) ?></strong>
                 </div>
+                <a href="index.php?logout=1" class="btn btn-outline" style="width: 100%;">Sign Out</a>
             <?php else: ?>
-                <a href="index.php?p=login" class="<?= $page === 'login' ? 'active' : '' ?>">Login</a>
-                <a href="index.php?p=register-retail" class="btn" style="margin-top: 8px;">Register</a>
+                <a href="index.php?p=login" class="btn btn-primary" style="width: 100%;">Sign In</a>
+                <a href="index.php?p=register-retail" class="btn btn-outline" style="width: 100%;">Create Account</a>
             <?php endif; ?>
         </div>
     </div>
@@ -1879,40 +1460,61 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
     <main class="container" style="flex-grow: 1;">
         
         <?php if (!empty($error)): ?>
-            <div class="alert-box alert-danger" style="margin-top:20px;">
-                <i class="ph ph-warning-circle"></i> <?= $error ?>
+            <div class="alert alert-error">
+                <i class="ph ph-warning-circle" style="font-size: 20px;"></i>
+                <div><?= htmlspecialchars($error) ?></div>
+            </div>
+        <?php endif; ?>
+
+        <?php if (!empty($message) && $page !== 'request_success' && $page !== 'order_success'): ?>
+             <div class="alert alert-success">
+                <i class="ph ph-check-circle" style="font-size: 20px;"></i>
+                <div><?= htmlspecialchars($message) ?></div>
             </div>
         <?php endif; ?>
 
         <?php
-        // ------------------ PAGE: HOME ------------------
+        // ==========================================
+        // PAGE: HOME
+        // ==========================================
         if ($page === 'home'):
         ?>
-            <div class="hero">
-                <h1>Direct Industrial & Retail Catalog</h1>
-                <p>Access Sri Lanka's leading machinery and parts inventory catalog. Log in to claim authorized wholesale pricing tiers.</p>
-                <div class="hero-actions">
-                    <a href="index.php?p=shop" class="btn">Browse Collection</a>
-                    <?php if(!$isLoggedIn): ?>
-                        <a href="index.php?p=wholesaler-request" class="btn btn-outline">Apply for Wholesale Price</a>
-                    <?php endif; ?>
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>The Art of Fine Stationery</h1>
+                    <p>Discover our curated collection of premium journals, exquisite writing instruments, and elegant desk accessories designed to inspire your thoughts.</p>
+                    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                        <a href="index.php?p=shop" class="btn btn-primary">Shop the Collection</a>
+                        <?php if(!$isLoggedIn): ?>
+                            <a href="index.php?p=wholesaler-request" class="btn btn-outline">Corporate Accounts</a>
+                        <?php endif; ?>
+                    </div>
                 </div>
-            </div>
+            </section>
 
-            <div class="featured-section">
-                <h2 class="featured-title">Featured Hardware Categories</h2>
+            <section>
+                <h2 class="section-title">Curated Categories</h2>
                 <div class="categories-grid">
-                    <?php foreach(array_slice($categories, 0, 4) as $cat): ?>
-                        <a href="index.php?p=shop&category=<?= $cat->id ?>" class="category-card">
-                            <div class="category-icon"><i class="ph ph-package"></i></div>
-                            <h4 class="category-name"><?= htmlspecialchars($cat->name) ?></h4>
+                    <?php 
+                    // Fallback icons for stationery if categories exist
+                    $icons = ['ph-book-open', 'ph-pen-nib', 'ph-briefcase', 'ph-envelope-simple-open'];
+                    $i = 0;
+                    foreach(array_slice($categories, 0, 4) as $cat): 
+                        $iconClass = $icons[$i % count($icons)];
+                        $i++;
+                    ?>
+                        <a href="index.php?p=shop&category=<?= $cat->id ?>" class="cat-card">
+                            <div class="cat-icon"><i class="ph <?= $iconClass ?>"></i></div>
+                            <h3 class="cat-name"><?= htmlspecialchars($cat->name) ?></h3>
                         </a>
                     <?php endforeach; ?>
                 </div>
-            </div>
+            </section>
 
         <?php
-        // ------------------ PAGE: SHOP ------------------
+        // ==========================================
+        // PAGE: SHOP
+        // ==========================================
         elseif ($page === 'shop'):
             $catFilter = $_GET['category'] ?? null;
             $search = $_GET['q'] ?? '';
@@ -1933,99 +1535,87 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
             $stmt->execute($params);
             $products = $stmt->fetchAll();
         ?>
-            <div>
-                <form action="index.php" method="GET" class="search-bar-row">
+            <div class="shop-header">
+                <h1 style="font-size: 32px;">Our Collection</h1>
+                <form action="index.php" method="GET" class="search-bar">
                     <input type="hidden" name="p" value="shop">
                     <?php if($catFilter): ?>
                         <input type="hidden" name="category" value="<?= $catFilter ?>">
                     <?php endif; ?>
-                    <input type="text" name="q" class="form-control" placeholder="Search by product name or item code..." value="<?= htmlspecialchars($search) ?>">
-                    <button type="submit" class="btn"><i class="ph ph-magnifying-glass"></i> Search</button>
+                    <input type="text" name="q" class="form-control" placeholder="Search fine items..." value="<?= htmlspecialchars($search) ?>">
+                    <button type="submit" aria-label="Search"><i class="ph ph-magnifying-glass"></i></button>
                 </form>
+            </div>
 
-                <div class="shop-layout">
-                    <!-- Filters -->
-                    <div class="filters-card">
-                        <div class="filter-section">
-                            <h4>All Categories</h4>
-                            <ul class="filter-list">
-                                <li>
-                                    <a href="index.php?p=shop" class="<?= !$catFilter ? 'active' : '' ?>">
-                                        <i class="ph ph-circles-four"></i> View All
-                                    </a>
-                                </li>
-                                <?php foreach($categories as $cat): ?>
-                                    <li>
-                                        <a href="index.php?p=shop&category=<?= $cat->id ?>" class="<?= $catFilter == $cat->id ? 'active' : '' ?>">
-                                            <i class="ph ph-tag"></i> <?= htmlspecialchars($cat->name) ?>
-                                        </a>
-                                    </li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </div>
+            <div class="shop-container">
+                <!-- Sidebar Filters -->
+                <aside class="sidebar">
+                    <h4 class="sidebar-title">Categories</h4>
+                    <ul class="filter-list">
+                        <li>
+                            <a href="index.php?p=shop" class="<?= !$catFilter ? 'active' : '' ?>">
+                                All Items
+                            </a>
+                        </li>
+                        <?php foreach($categories as $cat): ?>
+                            <li>
+                                <a href="index.php?p=shop&category=<?= $cat->id ?>" class="<?= $catFilter == $cat->id ? 'active' : '' ?>">
+                                    <?= htmlspecialchars($cat->name) ?>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </aside>
+
+                <!-- Products Grid -->
+                <main>
+                    <div style="margin-bottom: 24px; color: var(--text-muted); font-size: 14px;">
+                        Showing <?= count($products) ?> items
                     </div>
-
-                    <!-- Products Grid -->
-                    <div>
-                        <div class="products-grid-header">
-                            <h3 class="products-grid-title">Products Available (<?= count($products) ?>)</h3>
-                        </div>
-                        <div class="products-grid">
-                            <?php if(empty($products)): ?>
-                                <p style="grid-column: 1/-1; color: var(--text-muted); text-align: center; padding: 40px 0;">No active items matching your criteria.</p>
-                            <?php else: ?>
-                                <?php foreach($products as $prod): ?>
-                                    <a href="index.php?p=product&id=<?= $prod->id ?>" class="prod-card">
-                                        <div class="prod-img">
-                                            <?php if(!empty($prod->image_path)): ?>
-                                                <?php
-                                                    $imgPath = $prod->image_path;
-                                                    $erpUrl = getErpBaseUrl();
-                                                    if(strpos($imgPath, 'public/') === 0) {
-                                                        $imgSrc = $erpUrl . substr($imgPath, 7);
-                                                    } else {
-                                                        $imgSrc = $erpUrl . 'uploads/products/' . $imgPath;
-                                                    }
-                                                ?>
-                                                <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($prod->name) ?>" onload="console.log('Successfully loaded image: ' + this.src);" onerror="console.error('Failed to load image: ' + this.src);">
-                                                <script>console.log('Product "<?= htmlspecialchars($prod->name) ?>" image path: <?= $imgSrc ?>');</script>
-                                            <?php else: ?>
-                                                <div class="no-img"><i class="ph ph-image-square"></i></div>
-                                            <?php endif; ?>
+                    
+                    <div class="product-grid">
+                        <?php if(empty($products)): ?>
+                            <div style="grid-column: 1/-1; text-align: center; padding: 64px 0; color: var(--text-muted);">
+                                <i class="ph-light ph-wind" style="font-size: 48px; margin-bottom: 16px;"></i>
+                                <p>No pieces found matching your criteria.</p>
+                            </div>
+                        <?php else: ?>
+                            <?php foreach($products as $prod): ?>
+                                <a href="index.php?p=product&id=<?= $prod->id ?>" class="product-card">
+                                    <div class="product-img-wrapper">
+                                        <?php if(!empty($prod->image_path)): ?>
+                                            <?php
+                                                $imgPath = $prod->image_path;
+                                                $erpUrl = getErpBaseUrl();
+                                                $imgSrc = (strpos($imgPath, 'public/') === 0) 
+                                                    ? $erpUrl . substr($imgPath, 7) 
+                                                    : $erpUrl . 'uploads/products/' . $imgPath;
+                                            ?>
+                                            <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($prod->name) ?>" loading="lazy">
+                                        <?php else: ?>
+                                            <i class="ph-light ph-image empty-img"></i>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="product-brand"><?= htmlspecialchars($prod->brand ?? 'Lumière Exclusive') ?></div>
+                                    <h3 class="product-title"><?= htmlspecialchars($prod->name) ?></h3>
+                                    
+                                    <div class="product-footer">
+                                        <div class="product-price">Rs. <?= number_format(getItemPrice($prod, $userRole), 2) ?></div>
+                                        <div class="stock-indicator <?= $prod->qty > 0 ? 'in-stock' : 'out-stock' ?>">
+                                            <?= $prod->qty > 0 ? 'Available' : 'Sold Out' ?>
                                         </div>
-                                        <div class="prod-details">
-                                            <div class="prod-brand"><?= htmlspecialchars($prod->brand ?? 'Generic') ?></div>
-                                            <h3><?= htmlspecialchars($prod->name) ?></h3>
-                                            
-                                            <div class="prod-status-row">
-                                                <?php if($prod->qty > 0): ?>
-                                                    <span class="stock-badge stock-in">In Stock (<?= $prod->qty ?> <?= $prod->unit ?>)</span>
-                                                <?php else: ?>
-                                                    <span class="stock-badge stock-out">Out of Stock</span>
-                                                <?php endif; ?>
-                                            </div>
-
-                                            <div class="prod-price-row">
-                                                <div class="price-badge">
-                                                    Rs. <?= number_format(getItemPrice($prod, $userRole), 2) ?>
-                                                </div>
-                                                <?php if($userRole === 'wholesaler'): ?>
-                                                    <span class="role-indicator role-indicator-wholesale">Wholesale</span>
-                                                <?php else: ?>
-                                                    <span class="role-indicator">Retail</span>
-                                                <?php endif; ?>
-                                            </div>
-                                        </div>
-                                    </a>
-                                <?php endforeach; ?>
-                            <?php endif; ?>
-                        </div>
+                                    </div>
+                                </a>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
-                </div>
+                </main>
             </div>
 
         <?php
-        // ------------------ PAGE: PRODUCT DETAILS ------------------
+        // ==========================================
+        // PAGE: PRODUCT DETAILS
+        // ==========================================
         elseif ($page === 'product'):
             $prodId = intval($_GET['id'] ?? 0);
             $stmt = $db->prepare("SELECT * FROM items WHERE id = :id LIMIT 1");
@@ -2033,76 +1623,75 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
             $product = $stmt->fetch();
 
             if (!$product) {
-                echo "<p style='padding:50px; text-align:center;'>Product profile not found.</p>";
+                echo "<div style='padding: 100px 0; text-align: center;'><h2>Product not found</h2></div>";
             } else {
                 $varsList = json_decode($product->variations_json ?? '[]', true);
         ?>
-            <div class="detail-grid">
-                <div class="detail-img">
+            <div class="detail-layout">
+                <!-- Gallery Left -->
+                <div class="detail-gallery">
                     <?php if(!empty($product->image_path)): ?>
                         <?php
                             $imgPath = $product->image_path;
                             $erpUrl = getErpBaseUrl();
-                            if(strpos($imgPath, 'public/') === 0) {
-                                $imgSrc = $erpUrl . substr($imgPath, 7);
-                            } else {
-                                $imgSrc = $erpUrl . 'uploads/products/' . $imgPath;
-                            }
+                            $imgSrc = (strpos($imgPath, 'public/') === 0) 
+                                ? $erpUrl . substr($imgPath, 7) 
+                                : $erpUrl . 'uploads/products/' . $imgPath;
                         ?>
-                        <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($product->name) ?>" onload="console.log('Successfully loaded details image: ' + this.src);" onerror="console.error('Failed to load details image: ' + this.src);">
-                        <script>console.log('Product Details image path: <?= $imgSrc ?>');</script>
+                        <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($product->name) ?>">
                     <?php else: ?>
-                        <div class="no-img" style="font-size:64px;"><i class="ph ph-image-square"></i></div>
+                        <i class="ph-light ph-image empty-img"></i>
                     <?php endif; ?>
                 </div>
 
-                <div class="detail-content">
-                    <span class="detail-brand">
-                        <?= htmlspecialchars($product->brand ?? 'Generic') ?>
-                    </span>
+                <!-- Info Right -->
+                <div class="detail-info">
+                    <span class="detail-brand"><?= htmlspecialchars($product->brand ?? 'Lumière Exclusive') ?></span>
                     <h1 class="detail-title"><?= htmlspecialchars($product->name) ?></h1>
                     
-                    <div style="margin-bottom: 20px;">
-                        <?php if($product->qty > 0): ?>
-                            <span class="stock-badge stock-in" style="font-size:13px; padding:4px 12px;" id="stockBadge">In Stock (<?= $product->qty ?> <?= $product->unit ?>)</span>
-                        <?php else: ?>
-                            <span class="stock-badge stock-out" style="font-size:13px; padding:4px 12px;" id="stockBadge">Out of Stock</span>
-                        <?php endif; ?>
+                    <div class="detail-price-wrap">
+                        <div class="detail-price" id="priceDisplay">
+                            Rs. <?= number_format(getItemPrice($product, $userRole), 2) ?>
+                        </div>
+                        <div style="font-size: 13px; color: var(--text-muted);">
+                            <?php if($userRole === 'wholesaler'): ?>
+                                Corporate Partner Pricing Applied
+                            <?php else: ?>
+                                Standard Pricing
+                            <?php endif; ?>
+                            &bull; 
+                            <span class="<?= $product->qty > 0 ? 'in-stock' : 'out-stock' ?>" style="color: inherit;">
+                                <?= $product->qty > 0 ? "In Stock ({$product->qty})" : 'Out of Stock' ?>
+                            </span>
+                        </div>
                     </div>
 
-                    <div class="detail-price" id="priceDisplay">
-                        Rs. <?= number_format(getItemPrice($product, $userRole), 2) ?>
-                        <span class="detail-price-type">
-                            Price type: <?= ($userRole === 'wholesaler' ? 'Wholesale Price Account' : 'Retail standard') ?>
-                        </span>
+                    <div class="detail-desc">
+                        <?= nl2br(htmlspecialchars($product->description ?? 'An exquisite addition to your collection. Refined materials and careful craftsmanship define this piece.')) ?>
                     </div>
-
-                    <p class="detail-description">
-                        <?= nl2br(htmlspecialchars($product->description ?? 'No product details cataloged yet.')) ?>
-                    </p>
 
                     <form action="index.php?p=product&id=<?= $product->id ?>" method="POST" class="detail-form">
                         <input type="hidden" name="action" value="add_to_cart">
                         <input type="hidden" name="item_id" value="<?= $product->id ?>">
                         
-                        <!-- Variation Price Overrides -->
+                        <!-- Variation Overrides (Required for Backend Logic) -->
                         <input type="hidden" name="variation_sku" id="varSku">
                         <input type="hidden" name="variation_price" id="varPrice">
                         <input type="hidden" name="variation_wholesale_price" id="varWholesalePrice">
                         <input type="hidden" name="variation_attribute" id="varAttr">
 
                         <?php if(!empty($varsList)): ?>
-                            <div class="form-group" style="max-width:300px;">
-                                <label for="variationSelect">Select Options/Size</label>
+                            <div class="form-group">
+                                <label class="form-label" for="variationSelect">Select Specification</label>
                                 <select id="variationSelect" class="form-control" onchange="updateVariation()">
-                                    <option value="" data-price="<?= $product->price ?>" data-wholesale="<?= $product->wholesale_price ?>" data-sku="<?= $product->item_code ?>" data-qty="<?= $product->qty ?>">Default option</option>
+                                    <option value="" data-price="<?= $product->price ?>" data-wholesale="<?= $product->wholesale_price ?>" data-sku="<?= $product->item_code ?>" data-qty="<?= $product->qty ?>">Standard Configuration</option>
                                     <?php foreach($varsList as $v): ?>
                                         <option value="<?= htmlspecialchars($v['sku']) ?>" 
                                                 data-sku="<?= htmlspecialchars($v['sku']) ?>" 
                                                 data-price="<?= $v['price'] ?>" 
                                                 data-wholesale="<?= $v['wholesale_price'] ?>"
                                                 data-attr="<?= htmlspecialchars($v['attribute']) ?>"
-                                                data-qty="10"> <!-- fallback qty -->
+                                                data-qty="10"> 
                                             <?= htmlspecialchars($v['attribute']) ?>
                                         </option>
                                     <?php endforeach; ?>
@@ -2110,13 +1699,13 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
                             </div>
                         <?php endif; ?>
 
-                        <div class="action-row">
-                            <div class="form-group" style="margin-bottom:0; width:100px;">
-                                <label for="qtyInput">Quantity</label>
-                                <input type="number" name="qty" id="qtyInput" class="form-control" value="1" min="1" max="<?= max(1, $product->qty) ?>">
+                        <div class="qty-row">
+                            <div style="width: 120px;">
+                                <label class="form-label" for="qtyInput">Quantity</label>
+                                <input type="number" name="qty" id="qtyInput" class="form-control" value="1" min="1" max="<?= max(1, $product->qty) ?>" style="text-align: center;">
                             </div>
-                            <button type="submit" class="btn" style="flex-grow:1; height:45px;" <?= ($product->qty <= 0) ? 'disabled style="opacity:0.5; cursor:not-allowed;"' : '' ?>>
-                                <i class="ph ph-shopping-cart-simple"></i> Add To Cart
+                            <button type="submit" class="btn btn-primary" style="flex-grow: 1; height: 50px;" <?= ($product->qty <= 0) ? 'disabled' : '' ?>>
+                                Add to Bag <i class="ph ph-shopping-bag"></i>
                             </button>
                         </div>
                     </form>
@@ -2135,252 +1724,266 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
                     const attr = opt.getAttribute('data-attr') || '';
                     const role = "<?= $userRole ?>";
 
-                    // Update hidden inputs
                     document.getElementById('varSku').value = sku;
                     document.getElementById('varPrice').value = price;
                     document.getElementById('varWholesalePrice').value = wholesale;
                     document.getElementById('varAttr').value = attr;
 
-                    // Update UI price
                     const selectedPrice = (role === 'wholesaler') ? wholesale : price;
-                    document.getElementById('priceDisplay').innerHTML = 'Rs. ' + selectedPrice.toFixed(2) + 
-                        '<span class="detail-price-type">' +
-                        'Price type: ' + (role === 'wholesaler' ? 'Wholesale Price Account' : 'Retail standard') + '</span>';
+                    document.getElementById('priceDisplay').textContent = 'Rs. ' + selectedPrice.toFixed(2);
                 }
             </script>
         <?php
             }
-        // ------------------ PAGE: LOGIN ------------------
+
+        // ==========================================
+        // PAGE: LOGIN
+        // ==========================================
         elseif ($page === 'login'):
         ?>
-            <div class="card-form">
-                <h3 style="margin-top:0; font-weight:700; font-size:22px; text-align:center; margin-bottom:20px;">Account Login</h3>
+            <div class="auth-container">
+                <h2>Welcome Back</h2>
                 <form action="index.php?p=login" method="POST">
                     <input type="hidden" name="action" value="login">
                     
                     <div class="form-group">
-                        <label>Username or Email Address</label>
-                        <input type="text" name="username_or_email" class="form-control" required placeholder="e.g. johndoe">
+                        <label class="form-label">Email or Username</label>
+                        <input type="text" name="username_or_email" class="form-control" required placeholder="Enter your credentials">
                     </div>
 
                     <div class="form-group">
-                        <label>Password</label>
+                        <label class="form-label">Password</label>
                         <input type="password" name="password" class="form-control" required placeholder="••••••••">
                     </div>
 
-                    <button type="submit" class="btn" style="width:100%;">Sign In</button>
+                    <button type="submit" class="btn btn-primary" style="width:100%; padding: 14px;">Sign In</button>
                 </form>
-                <div style="margin-top:20px; text-align:center; font-size:14px; color:var(--text-muted);">
-                    Don't have an account? <a href="index.php?p=register-retail" style="color:var(--primary); font-weight:600;">Register as Retail Customer</a>
-                    <div style="margin-top:10px;">
-                        Applying for B2B pricing? <a href="index.php?p=wholesaler-request" style="color:var(--primary); font-weight:600;">Request Wholesaler Access</a>
-                    </div>
+                <div class="auth-footer">
+                    <p>New to Lumière? <a href="index.php?p=register-retail">Create an Account</a></p>
+                    <p style="margin-top: 12px;">Interested in Corporate Gifting? <a href="index.php?p=wholesaler-request">Apply Here</a></p>
                 </div>
             </div>
 
         <?php
-        // ------------------ PAGE: REGISTER RETAIL ------------------
+        // ==========================================
+        // PAGE: REGISTER RETAIL
+        // ==========================================
         elseif ($page === 'register-retail'):
         ?>
-            <div class="card-form">
-                <h3 style="margin-top:0; font-weight:700; font-size:22px; text-align:center; margin-bottom:20px;">Create Retail Account</h3>
+            <div class="auth-container" style="max-width: 600px;">
+                <h2>Become a Member</h2>
                 <form action="index.php?p=register-retail" method="POST">
                     <input type="hidden" name="action" value="register_retail">
 
                     <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" name="name" class="form-control" required placeholder="e.g. John Doe">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Email Address</label>
-                        <input type="email" name="email" class="form-control" required placeholder="e.g. john@example.com">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Choose Username</label>
-                        <input type="text" name="username" class="form-control" required placeholder="e.g. johndoe">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" name="password" class="form-control" required placeholder="••••••••">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" name="name" class="form-control" required>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label>Phone Number</label>
-                            <input type="text" name="phone" class="form-control" placeholder="e.g. +94 77 123 4567">
+                            <label class="form-label">Email Address</label>
+                            <input type="email" name="email" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label>City</label>
-                            <input type="text" name="city" class="form-control" placeholder="e.g. Kurunegala">
+                            <label class="form-label">Username</label>
+                            <input type="text" name="username" class="form-control" required>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Delivery Address</label>
-                        <textarea name="address" class="form-control" rows="2" placeholder="Street name, block..."></textarea>
+                        <label class="form-label">Password</label>
+                        <input type="password" name="password" class="form-control" required>
                     </div>
 
-                    <button type="submit" class="btn" style="width:100%;">Create Account</button>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Phone</label>
+                            <input type="text" name="phone" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">City</label>
+                            <input type="text" name="city" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Delivery Address</label>
+                        <textarea name="address" class="form-control" rows="2"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width:100%; padding: 14px;">Create Account</button>
                 </form>
-                <div style="margin-top:20px; text-align:center; font-size:14px; color:var(--text-muted);">
-                    Already have an account? <a href="index.php?p=login" style="color:var(--primary); font-weight:600;">Sign In</a>
+                <div class="auth-footer">
+                    <p>Already a member? <a href="index.php?p=login">Sign In</a></p>
                 </div>
             </div>
 
         <?php
-        // ------------------ PAGE: WHOLESALER REQUEST ------------------
+        // ==========================================
+        // PAGE: WHOLESALER REQUEST
+        // ==========================================
         elseif ($page === 'wholesaler-request'):
         ?>
-            <div class="card-form" style="max-width: 600px;">
-                <h3 style="margin-top:0; font-weight:700; font-size:22px; text-align:center; margin-bottom:10px;">Request B2B Wholesale Account</h3>
-                <p style="color:var(--text-muted); font-size:14px; text-align:center; margin-bottom:25px;">Fill out this request form to register your business entity. Once reviewed, our support agents will verify details, link your company profile, and activate wholesale pricing.</p>
+            <div class="auth-container" style="max-width: 700px;">
+                <h2>Corporate Partner Application</h2>
+                <p style="text-align: center; color: var(--text-muted); margin-bottom: 32px; font-size: 14px;">
+                    Apply for an exclusive corporate account to access volume pricing on premium journals, pens, and desk accessories for your business or corporate gifting needs.
+                </p>
                 
                 <form action="index.php?p=wholesaler-request" method="POST">
                     <input type="hidden" name="action" value="submit_wholesaler_request">
 
                     <div class="form-group">
-                        <label>Business Name (Company Name) *</label>
-                        <input type="text" name="business_name" class="form-control" required placeholder="e.g. Candent Hardware PLC">
+                        <label class="form-label">Company Name *</label>
+                        <input type="text" name="business_name" class="form-control" required>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label>Contact Phone Number *</label>
-                            <input type="text" name="contact_number" class="form-control" required placeholder="e.g. +94 37 123 4567">
+                            <label class="form-label">Contact Number *</label>
+                            <input type="text" name="contact_number" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label>Business Email Address *</label>
-                            <input type="email" name="email_address" class="form-control" required placeholder="e.g. purchase@candent.lk">
+                            <label class="form-label">Business Email *</label>
+                            <input type="email" name="email_address" class="form-control" required>
                         </div>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label>Requested Login Username *</label>
-                            <input type="text" name="username" class="form-control" required placeholder="e.g. candent_b2b">
+                            <label class="form-label">Requested Username *</label>
+                            <input type="text" name="username" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label>Requested Account Password *</label>
-                            <input type="password" name="password" class="form-control" required placeholder="••••••••">
+                            <label class="form-label">Account Password *</label>
+                            <input type="password" name="password" class="form-control" required>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label>Business Operations City *</label>
-                        <input type="text" name="city" class="form-control" required placeholder="e.g. Kurunegala">
+                        <label class="form-label">Corporate City *</label>
+                        <input type="text" name="city" class="form-control" required>
                     </div>
 
                     <div class="form-group">
-                        <label>Registered Business Address *</label>
-                        <textarea name="address" class="form-control" rows="3" required placeholder="No., Street, Town name..."></textarea>
+                        <label class="form-label">Registered Address *</label>
+                        <textarea name="address" class="form-control" rows="3" required></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label>Verification notes / Special Instructions</label>
-                        <textarea name="notes" class="form-control" rows="2" placeholder="e.g. Business registration document references, BRN-12345..."></textarea>
+                        <label class="form-label">Additional Requirements / Notes</label>
+                        <textarea name="notes" class="form-control" rows="2" placeholder="Tell us about your corporate gifting needs..."></textarea>
                     </div>
 
-                    <button type="submit" class="btn" style="width:100%;">Submit Access Request</button>
+                    <button type="submit" class="btn btn-primary" style="width:100%; padding: 14px;">Submit Application</button>
                 </form>
             </div>
 
         <?php
-        // ------------------ PAGE: REQUEST SUCCESS ------------------
+        // ==========================================
+        // PAGE: REQUEST SUCCESS
+        // ==========================================
         elseif ($page === 'request_success'):
         ?>
-            <div class="card-form style-success" style="text-align:center; padding: 40px 30px;">
-                <div style="font-size: 64px; color:#2e7d32; margin-bottom:15px;"><i class="ph-fill ph-check-circle"></i></div>
-                <h3 style="margin-top:0; font-weight:700; font-size:24px;">Application Received</h3>
-                <p style="color:var(--text-muted); font-size:15px; line-height:1.6; margin-bottom:30px;">
-                    <?= $message ?>
-                </p>
-                <a href="index.php?p=shop" class="btn">Return to Shop</a>
+            <div class="success-state">
+                <i class="ph-light ph-check-circle success-icon"></i>
+                <h2>Application Received</h2>
+                <p style="color: var(--text-muted); margin: 16px 0 32px;"><?= $message ?></p>
+                <a href="index.php?p=shop" class="btn btn-primary">Return to Collection</a>
             </div>
 
         <?php
-        // ------------------ PAGE: ORDER SUCCESS ------------------
+        // ==========================================
+        // PAGE: ORDER SUCCESS
+        // ==========================================
         elseif ($page === 'order_success'):
         ?>
-            <div class="card-form style-success" style="text-align:center; padding: 40px 30px;">
-                <div style="font-size: 64px; color:#2e7d32; margin-bottom:15px;"><i class="ph-fill ph-check-circle"></i></div>
-                <h3 style="margin-top:0; font-weight:700; font-size:24px;">Order Placed Successfully!</h3>
-                <p style="color:var(--text-muted); font-size:15px; line-height:1.6; margin-bottom:30px;">
-                    <?= $message ?>
-                </p>
-                <a href="index.php?p=shop" class="btn">Continue Shopping</a>
+            <div class="success-state">
+                <i class="ph-light ph-package success-icon"></i>
+                <h2>Order Confirmed</h2>
+                <p style="color: var(--text-muted); margin: 16px 0 32px;"><?= $message ?></p>
+                <a href="index.php?p=shop" class="btn btn-primary">Continue Shopping</a>
             </div>
 
         <?php
-        // ------------------ PAGE: CART ------------------
+        // ==========================================
+        // PAGE: CART
+        // ==========================================
         elseif ($page === 'cart'):
         ?>
-            <div>
-                <h2 class="cart-title">Your Shopping Cart</h2>
-
-                <?php if(empty($_SESSION['ec_cart'])): ?>
-                    <div style="background:var(--card-bg); border:1px solid var(--border-color); border-radius:var(--rounded); padding:50px; text-align:center; box-shadow:var(--shadow-sm);">
-                        <div style="font-size:48px; color:var(--text-muted); margin-bottom:10px;"><i class="ph ph-shopping-cart-simple"></i></div>
-                        <p style="color:var(--text-muted); font-size:16px;">Your cart is empty.</p>
-                        <a href="index.php?p=shop" class="btn" style="margin-top:15px;">Go Browse Products</a>
-                    </div>
-                <?php else: ?>
-                    <form action="index.php?p=cart" method="POST">
-                        <input type="hidden" name="action" value="update_cart">
-                        
-                        <div class="cart-wrapper">
-                            <table class="cart-table">
-                                <thead>
-                                    <tr>
-                                        <th>Item</th>
-                                        <th>SKU</th>
-                                        <th>Price</th>
-                                        <th style="width:100px;">Quantity</th>
-                                        <th style="text-align:right;">Subtotal</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php 
-                                    $subtotal = 0;
-                                    foreach($_SESSION['ec_cart'] as $k => $item): 
-                                        $itemSub = $item['price'] * $item['qty'];
-                                        $subtotal += $itemSub;
-                                    ?>
-                                        <tr>
-                                            <td data-label="Item">
-                                                <strong><?= htmlspecialchars($item['name']) ?></strong>
-                                                <?php if(!empty($item['attribute'])): ?>
-                                                    <span style="font-size:11px; color:var(--text-muted); display:block;">Option: <?= htmlspecialchars($item['attribute']) ?></span>
-                                                <?php endif; ?>
-                                            </td>
-                                            <td data-label="SKU" style="font-family:monospace;"><?= htmlspecialchars($item['sku']) ?></td>
-                                            <td data-label="Price">Rs. <?= number_format($item['price'], 2) ?></td>
-                                            <td data-label="Quantity">
-                                                <input type="number" name="qty[<?= $k ?>]" value="<?= $item['qty'] ?>" min="0" class="form-control" style="padding:4px 8px; font-size:13px; text-align:center;">
-                                            </td>
-                                            <td data-label="Subtotal" style="text-align:right; font-weight:700;">Rs. <?= number_format($itemSub, 2) ?></td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                    <tr class="cart-total-row">
-                                        <td colspan="4" style="text-align:right; font-weight:600; font-size:16px;">Total Subtotal:</td>
-                                        <td style="text-align:right; font-weight:800; font-size:20px; color:var(--primary);">Rs. <?= number_format($subtotal, 2) ?></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="action-row" style="margin-top: 24px; margin-bottom: 48px; justify-content: space-between;">
-                            <button type="submit" class="btn btn-outline" style="align-self: center;"><i class="ph ph-arrows-clockwise"></i> Recalculate Quantities</button>
-                            <a href="index.php?p=checkout" class="btn" style="align-self: center;">Proceed to Checkout <i class="ph ph-arrow-right"></i></a>
-                        </div>
-                    </form>
-                <?php endif; ?>
+            <div class="page-header">
+                <h1>Your Shopping Bag</h1>
             </div>
 
+            <?php if(empty($_SESSION['ec_cart'])): ?>
+                <div style="text-align: center; padding: 64px 20px; background: var(--bg-card); border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
+                    <i class="ph-light ph-shopping-bag" style="font-size: 64px; color: var(--text-muted); margin-bottom: 24px;"></i>
+                    <h3 style="margin-bottom: 16px;">Your bag is currently empty</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 32px;">Discover our collection of fine stationery and writing instruments.</p>
+                    <a href="index.php?p=shop" class="btn btn-primary">Explore Collection</a>
+                </div>
+            <?php else: ?>
+                <form action="index.php?p=cart" method="POST">
+                    <input type="hidden" name="action" value="update_cart">
+                    
+                    <div class="cart-table-wrap">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Item Details</th>
+                                    <th>SKU</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th style="text-align: right;">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                $subtotal = 0;
+                                foreach($_SESSION['ec_cart'] as $k => $item): 
+                                    $itemSub = $item['price'] * $item['qty'];
+                                    $subtotal += $itemSub;
+                                ?>
+                                    <tr>
+                                        <td data-label="Item Details">
+                                            <div class="cart-item-name"><?= htmlspecialchars($item['name']) ?></div>
+                                            <?php if(!empty($item['attribute'])): ?>
+                                                <div class="cart-item-meta">Specification: <?= htmlspecialchars($item['attribute']) ?></div>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td data-label="SKU" class="cart-item-meta"><?= htmlspecialchars($item['sku']) ?></td>
+                                        <td data-label="Price">Rs. <?= number_format($item['price'], 2) ?></td>
+                                        <td data-label="Quantity">
+                                            <input type="number" name="qty[<?= $k ?>]" value="<?= $item['qty'] ?>" min="0" class="form-control cart-qty-input">
+                                        </td>
+                                        <td data-label="Total" style="text-align: right; font-weight: 600;">Rs. <?= number_format($itemSub, 2) ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="cart-summary">
+                        <button type="submit" class="btn btn-outline"><i class="ph ph-arrows-clockwise"></i> Update Bag</button>
+                        <div style="text-align: right;">
+                            <div style="font-size: 14px; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px;">Subtotal</div>
+                            <div class="summary-total">Rs. <?= number_format($subtotal, 2) ?></div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; justify-content: flex-end; margin-bottom: 80px;">
+                        <a href="index.php?p=checkout" class="btn btn-primary" style="padding: 16px 40px; font-size: 16px;">
+                            Proceed to Checkout <i class="ph ph-arrow-right"></i>
+                        </a>
+                    </div>
+                </form>
+            <?php endif; ?>
+
         <?php
-        // ------------------ PAGE: CHECKOUT ------------------
+        // ==========================================
+        // PAGE: CHECKOUT
+        // ==========================================
         elseif ($page === 'checkout'):
             if(empty($_SESSION['ec_cart'])) {
                 header('Location: index.php?p=cart');
@@ -2391,62 +1994,76 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
                 $subtotal += $item['price'] * $item['qty'];
             }
         ?>
-            <div class="checkout-grid">
-                <div class="card" style="background:var(--card-bg); border:1px solid var(--border-color); border-radius:var(--rounded); padding:30px; box-shadow:var(--shadow-sm);">
-                    <h3 style="margin-top:0; font-weight:700; border-bottom:1px solid var(--border-color); padding-bottom:10px; margin-bottom:20px;">Shipping & Billing Information</h3>
+            <div class="page-header">
+                <h1>Secure Checkout</h1>
+            </div>
+
+            <div class="checkout-layout">
+                <!-- Shipping Form Left -->
+                <div class="checkout-box">
+                    <h3>Delivery Details</h3>
                     
                     <form action="index.php?p=checkout" method="POST" id="checkoutForm">
                         <input type="hidden" name="action" value="submit_order">
 
                         <?php if ($userRole === 'wholesaler'): ?>
-                            <div class="alert-box alert-success" style="margin-bottom:20px;">
-                                <i class="ph ph-check-circle"></i> B2B wholesale order account verified. Details will sync to your customer ledger profile: <strong><?= htmlspecialchars($userName) ?></strong>.
+                            <div class="alert alert-success">
+                                <i class="ph ph-briefcase" style="font-size: 20px;"></i>
+                                <div>Corporate billing profile active. Order will be recorded under: <strong><?= htmlspecialchars($userName) ?></strong></div>
                             </div>
                         <?php else: ?>
-                            <div class="form-group">
-                                <label>Recipient's Full Name *</label>
-                                <input type="text" name="billing_name" class="form-control" required placeholder="e.g. John Doe">
-                            </div>
-                            <div class="form-group">
-                                <label>Recipient's Phone Number *</label>
-                                <input type="text" name="billing_phone" class="form-control" required placeholder="e.g. +94 77 123 4567">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label">Recipient Full Name *</label>
+                                    <input type="text" name="billing_name" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Contact Number *</label>
+                                    <input type="text" name="billing_phone" class="form-control" required>
+                                </div>
                             </div>
                         <?php endif; ?>
 
                         <div class="form-group">
-                            <label>Full Delivery / Dispatch Address *</label>
-                            <textarea name="shipping_address" class="form-control" rows="4" required placeholder="No., Street, Town, District..."></textarea>
+                            <label class="form-label">Delivery Address *</label>
+                            <textarea name="shipping_address" class="form-control" rows="4" required placeholder="Street, City, Postal Code..."></textarea>
                         </div>
 
                         <div class="form-group">
-                            <label>Special Shipping Notes or Logistics Instructions</label>
-                            <textarea name="shipping_notes" class="form-control" rows="2" placeholder="e.g. Please deliver during business hours..."></textarea>
+                            <label class="form-label">Special Instructions (Optional)</label>
+                            <textarea name="shipping_notes" class="form-control" rows="2" placeholder="E.g., leave at front desk, wrap as gift..."></textarea>
                         </div>
 
-                        <button type="submit" class="btn" style="width:100%; height:45px; margin-top:10px;">Confirm & Submit Order</button>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px; margin-top: 16px; font-size: 16px;">
+                            Place Order
+                        </button>
                     </form>
                 </div>
 
-                <div class="card" style="background:var(--card-bg); border:1px solid var(--border-color); border-radius:var(--rounded); padding:25px; box-shadow:var(--shadow-sm); height:fit-content;">
-                    <h3 style="margin-top:0; font-weight:700; border-bottom:1px solid var(--border-color); padding-bottom:10px; margin-bottom:15px;">Order Summary</h3>
+                <!-- Summary Right -->
+                <div class="checkout-box" style="position: sticky; top: calc(var(--header-height) + 40px); background: var(--bg-subtle);">
+                    <h3>Order Summary</h3>
                     
-                    <div style="display:flex; flex-direction:column; gap:12px; margin-bottom:20px;">
+                    <div style="display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; max-height: 40vh; overflow-y: auto; padding-right: 8px;">
                         <?php foreach($_SESSION['ec_cart'] as $item): ?>
-                            <div style="display:flex; justify-content:space-between; font-size:14px;">
-                                <div>
-                                    <strong><?= $item['qty'] ?>x</strong> <?= htmlspecialchars($item['name']) ?>
+                            <div class="summary-item">
+                                <div class="summary-item-title">
+                                    <span style="color: var(--text-main); font-weight: 500;"><?= $item['qty'] ?>x</span> 
+                                    <?= htmlspecialchars($item['name']) ?>
                                     <?php if(!empty($item['attribute'])): ?>
-                                        <span style="font-size:11px; color:var(--text-muted); display:block;">Option: <?= htmlspecialchars($item['attribute']) ?></span>
+                                        <div style="font-size: 12px; margin-top: 4px;"><?= htmlspecialchars($item['attribute']) ?></div>
                                     <?php endif; ?>
                                 </div>
-                                <span style="font-weight:600;">Rs. <?= number_format($item['price'] * $item['qty'], 2) ?></span>
+                                <div style="font-weight: 500; white-space: nowrap;">
+                                    Rs. <?= number_format($item['price'] * $item['qty'], 2) ?>
+                                </div>
                             </div>
                         <?php endforeach; ?>
                     </div>
 
-                    <div style="border-top:1px dashed var(--border-color); padding-top:15px; display:flex; justify-content:space-between; font-weight:800; font-size:18px;">
-                        <span>Grand Total:</span>
-                        <span style="color:var(--primary);">Rs. <?= number_format($subtotal, 2) ?></span>
+                    <div style="border-top: 1px solid var(--border-strong); padding-top: 24px; display: flex; justify-content: space-between; align-items: baseline;">
+                        <span style="font-size: 14px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted);">Total</span>
+                        <span style="font-family: var(--font-heading); font-size: 28px; font-weight: 500;">Rs. <?= number_format($subtotal, 2) ?></span>
                     </div>
                 </div>
             </div>
@@ -2457,18 +2074,19 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
 
     <footer>
         <div class="container">
-            <p>&copy; <?= date('Y') ?> Curtiss E-Commerce Platform. Direct integration with Curtiss ERP Catalog.</p>
+            <div style="font-family: var(--font-heading); font-size: 20px; color: var(--text-main); margin-bottom: 16px;">
+                <i class="ph-light ph-feather" style="color: var(--brand-accent);"></i> Lumière
+            </div>
+            <p>&copy; <?= date('Y') ?> Lumière Stationery Collection. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Light / Dark Theme script
+        // Light / Dark Theme Logic
         function updateThemeIcons(theme) {
             const iconDesktop = document.getElementById('theme-icon');
-            const iconMobile = document.getElementById('theme-icon-mobile');
-            const iconClass = (theme === 'dark') ? 'ph ph-moon' : 'ph ph-sun';
+            const iconClass = (theme === 'dark') ? 'ph ph-sun' : 'ph ph-moon';
             if (iconDesktop) iconDesktop.className = iconClass;
-            if (iconMobile) iconMobile.className = iconClass;
         }
 
         function toggleTheme() {
@@ -2481,17 +2099,16 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
             updateThemeIcons(newTheme);
         }
 
-        // Apply saved theme
         window.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('ec-theme') || 'light';
             document.body.setAttribute('data-theme', savedTheme);
             updateThemeIcons(savedTheme);
         });
 
-        // Mobile Menu Drawer Toggling
+        // Mobile Drawer Logic
         function toggleMenu() {
             const drawer = document.getElementById('mobileDrawer');
-            const overlay = document.getElementById('mobileDrawerOverlay');
+            const overlay = document.getElementById('drawerOverlay');
             if (drawer && overlay) {
                 drawer.classList.toggle('active');
                 overlay.classList.toggle('active');
@@ -2501,7 +2118,7 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
 </body>
 </html>
 <?php
-// Handle logout url
+// Handle logout
 if (isset($_GET['logout'])) {
     session_destroy();
     header('Location: index.php');
