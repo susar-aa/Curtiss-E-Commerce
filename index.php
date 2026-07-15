@@ -951,17 +951,17 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
                                     <a href="index.php?p=product&id=<?= $prod->id ?>" class="prod-card">
                                         <div class="prod-img">
                                             <?php if(!empty($prod->image_path)): ?>
-                                                <!-- Handle both ERP public path and direct filename formats -->
                                                 <?php
                                                     $imgPath = $prod->image_path;
                                                     $erpUrl = getErpBaseUrl();
                                                     if(strpos($imgPath, 'public/') === 0) {
-                                                        $imgSrc = $erpUrl . $imgPath;
+                                                        $imgSrc = $erpUrl . substr($imgPath, 7);
                                                     } else {
-                                                        $imgSrc = $erpUrl . 'public/uploads/products/' . $imgPath;
+                                                        $imgSrc = $erpUrl . 'uploads/products/' . $imgPath;
                                                     }
                                                 ?>
-                                                <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($prod->name) ?>">
+                                                <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($prod->name) ?>" onload="console.log('Successfully loaded image: ' + this.src);" onerror="console.error('Failed to load image: ' + this.src);">
+                                                <script>console.log('Product "<?= htmlspecialchars($prod->name) ?>" image path: <?= $imgSrc ?>');</script>
                                             <?php else: ?>
                                                 <div class="no-img"><i class="ph ph-image-square"></i></div>
                                             <?php endif; ?>
@@ -1017,12 +1017,13 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
                             $imgPath = $product->image_path;
                             $erpUrl = getErpBaseUrl();
                             if(strpos($imgPath, 'public/') === 0) {
-                                $imgSrc = $erpUrl . $imgPath;
+                                $imgSrc = $erpUrl . substr($imgPath, 7);
                             } else {
-                                $imgSrc = $erpUrl . 'public/uploads/products/' . $imgPath;
+                                $imgSrc = $erpUrl . 'uploads/products/' . $imgPath;
                             }
                         ?>
-                        <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($product->name) ?>">
+                        <img src="<?= $imgSrc ?>" alt="<?= htmlspecialchars($product->name) ?>" onload="console.log('Successfully loaded details image: ' + this.src);" onerror="console.error('Failed to load details image: ' + this.src);">
+                        <script>console.log('Product Details image path: <?= $imgSrc ?>');</script>
                     <?php else: ?>
                         <div class="no-img" style="font-size:64px;"><i class="ph ph-image-square"></i></div>
                     <?php endif; ?>
