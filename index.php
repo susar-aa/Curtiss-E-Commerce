@@ -991,6 +991,7 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
             text-decoration: none;
             color: inherit;
             height: 100%;
+            min-width: 0;
         }
 
         .prod-card:hover {
@@ -1014,10 +1015,19 @@ $categories = $db->query("SELECT * FROM item_categories ORDER BY name ASC")->fet
         }
 
         .prod-img img {
-            max-width: 90%;
-            max-height: 90%;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
             transition: transform 0.3s ease;
+        }
+
+        .no-img {
+            font-size: 32px;
+            color: var(--text-muted);
+            opacity: 0.5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .prod-card:hover .prod-img img {
